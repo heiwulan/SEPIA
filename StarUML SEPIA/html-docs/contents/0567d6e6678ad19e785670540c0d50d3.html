@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AbstractCPN</title>
+        <!-- <script src="http://use.edgefonts.net/source-sans-pro;source-code-pro.js"></script> -->
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+<!-- <script type="text/javascript" src="../assets/js/main.js"></script> -->
+
+    </head>
+    <body>
+        <div>
+
+            <!-- Name Title -->
+
+            <h1>AbstractCPN</h1>
+
+            <!-- Type and Stereotype -->
+
+            <section style="margin-top: .5em;">
+                <span class="alert alert-info">
+                    <span class="node-icon _icon-UMLClass"></span>
+                    UMLClass
+                </span>
+                
+            </section>
+
+            <!-- Path -->
+
+            <section style="margin-top: 10px">
+                
+                
+                
+                    
+                    <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon _icon-Project'></span>Untitled</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='e73cabc689efa8a8da3f69e008777956.html'><span class='node-icon _icon-UMLModel'></span>JavaReverse</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='95141f5a96012fbe8d61406e41a85797.html'><span class='node-icon _icon-UMLPackage'></span>de</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='dd1428e6e0dfe5c6405b3193bb09c89b.html'><span class='node-icon _icon-UMLPackage'></span>uni</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='0f5ce8af0d638c17450ac2e17b63245a.html'><span class='node-icon _icon-UMLPackage'></span>freiburg</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='dc71518dc306dcd3ffd255620e235c1a.html'><span class='node-icon _icon-UMLPackage'></span>iig</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='61fce7a73abe4b801126be3cb259a25a.html'><span class='node-icon _icon-UMLPackage'></span>telematik</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='fbd8dd6fc22963e6c21a5b8bf4a275ca.html'><span class='node-icon _icon-UMLPackage'></span>sepia</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='d2db10d44f093818644ad8eb3bdcd366.html'><span class='node-icon _icon-UMLPackage'></span>petrinet</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='f962aab04c8a61489444239348f16557.html'><span class='node-icon _icon-UMLPackage'></span>cpn</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='b5e487d3e45c302e86c8277ddb3c5f8b.html'><span class='node-icon _icon-UMLPackage'></span>abstr</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='0567d6e6678ad19e785670540c0d50d3.html'><span class='node-icon _icon-UMLClass'></span>AbstractCPN</a></span>
+                
+            </section>
+
+            <!-- Diagram -->
+
+            
+
+            <!-- Description -->
+
+            
+            <section>
+                <h3>Description</h3>
+                <div>
+                    
+                        <p>Class for defining Colored Petri nets (CPNs), which are a special kind of Petri nets
+that consider distinguishable tokens (with different colors).&lt;br&gt;
+&lt;br&gt;
+The class defines specific markings that respect CPN properties.&lt;br&gt;
+Markings contain for each place the number of tokens it contains for different colors.
+By providing appropriate methods, the class allows to add relations having constraints&lt;br&gt;
+(which define the number of tokens transferred over the relation for different colors).
+@author Thomas Stocker</p>
+                    
+                </div>
+            </section>
+            
+
+            <!-- Specification -->
+
+            
+
+            <!-- Directed Relationship -->
+
+            
+
+            <!-- Undirected Relationship -->
+
+            
+
+            <!-- Classifier -->
+
+            
+                
+                
+<section class="element-list">
+    <h3>Generalized Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='12f683a942bfa7d18741c93fa2c5bb48.html'><span class='node-icon _icon-UMLClass'></span>AbstractPetriNet</a></li>
+        
+    </ul>
+</section>
+
+
+
+                
+                
+
+
+                
+                
+
+
+                
+                
+
+
+                
+                
+
+            
+
+            <!-- Interface -->
+
+            
+
+            <!-- Component -->
+
+            
+
+            <!-- Node -->
+
+            
+
+            <!-- Actor -->
+
+            
+
+            <!-- Use Case -->
+
+            
+
+            <!-- Template Parameters -->
+
+            
+            <section>
+                <h3>Template Parameters</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="fef679d4bdf5d053d09df7390950ed9a.html">P</a></td>
+                        <td>AbstractCPNPlace&lt;F&gt;</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="ef1ccfead5a46ef8a27af34ced5d2d58.html">T</a></td>
+                        <td>AbstractCPNTransition&lt;F&gt;</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="439c6e4dfffff476bb244bbf3e8380ee.html">F</a></td>
+                        <td>AbstractCPNFlowRelation&lt;P</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="eeb48ba024c5a91b1277c7a88cfcb3f8.html">T&gt;</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="725a76827e1590ac2bfab5915985ff03.html">M</a></td>
+                        <td>AbstractCPNMarking</td>
+                        <td></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Literals -->
+
+            
+
+            <!-- Attributes -->
+
+            
+            <section>
+                <h3>Attributes</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>private</td>
+                        <td><a href="848e8fad211234e18f19c03825efa196.html">serialVersionUID</a></td>
+                        <td>long</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="b367aa3caf7348df202c87474db0f8b2.html">DEFAULT_TOKEN_COLOR</a></td>
+                        <td>String</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>private</td>
+                        <td><a href="be882ee9c9b5a7242233ffbb4f5acde9.html">toStringFormat</a></td>
+                        <td>String</td>
+                        <td><p>String format for plain output.
+@see #toString()</p></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Operations -->
+
+            
+            <section>
+                <h3>Operations</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="dc25d085dc0ee7b72e43c8a9384ba46b.html">AbstractCPN()</a></td>
+                        <td><p>Creates a new Colored Petri net.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="6e6c586184e2725842398f9792248d4d.html">AbstractCPN(places: String, transitions: String, initialMarking: M)</a></td>
+                        <td><p>Creates a new Colored Petri net.
+@param places Names of Petri net places to add.
+@param transitions Names of Petri net transition to add.
+@param initialMarking The initial marking of the Petri net.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="aa1dd47677b1bb882c40252bbebe300e.html">getNetType(): NetType</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="2daddf5c0e445ef5c2a631dae1dc4a10.html">getTokenColors(): String</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="fe16de7f7f08b0722164083ac30cdf40.html">defaultTokenColor(): String</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="634ea2652ec4bff16e3fd3c121ffdf2f.html">updateMarking(p: P): void</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="a426983f80cc0fe7dce7ce11de9bb944.html">validateMarking(marking: M): void</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="17fe7956108555ff29f04f38f5e00a9d.html">relationConstraintChanged(e: RelationConstraintEvent): void</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="2eafca7ad3a518a44faa7c34680d1103.html">transitionFired(e: TransitionEvent): void</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="7af2947bfc31c0b2eb8ce0e7b7ed99c6.html">addFiringRule(transitionName: String, rule: FiringRule): void</a></td>
+                        <td><p>Adds a firing rule for a transition to the Petri net.&lt;br&gt;
+A firing rule of a transition defines the tokens needed to fire (to get enabled)
+for places leading to the transitions and the tokens that are produced and added
+to places connected with outgoing relations.&lt;br&gt;
+This method translates the given firing rule into constraints for incoming and outgoing relations
+of the given transition and sets them accordingly.
+@param transitionName The name of the transition for which the firing rule is added.
+@param rule The firing rule.
+@throws ParameterException If some parameters are &lt;code&gt;null&lt;/code&gt;, the transition is unknown&lt;br&gt;
+or the firing rule contains unknown places.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="bafef6b7d8ac70615c821fe9f22f955d.html">getInitialMarking(): M</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="261d670222017f72553a2b544b5b98a8.html">getMarking(): M</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="215b3cf7407c81d0c0c69b0f37c3e825.html">fireCheck(transitionName: String): M</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="18bb759d21e919fa9fa07d4e228413ce.html">toString(): String</a></td>
+                        <td></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Receptions -->
+
+            
+
+            <!-- Extension Points -->
+
+            
+
+            <!-- Parameters -->
+
+            
+
+            <!-- Diagrams -->
+
+            
+            
+
+            <!-- Behavior -->
+
+            
+
+            <!-- Action -->
+
+            
+
+            <!-- Interaction -->
+
+            
+
+            <!-- CombinedFragment -->
+
+            
+
+            <!-- Activity -->
+
+            
+
+            <!-- State Machine -->
+
+            
+
+            <!-- State Machine -->
+
+            
+
+            <!-- State -->
+
+            
+
+            <!-- Vertex -->
+
+            
+
+            <!-- Transition -->
+
+            
+
+            <!-- Properties -->
+
+            <section>
+                <h3>Properties</h3>
+                
+                <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>AbstractCPN</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>true</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+            </section>
+
+            <!-- Tags -->
+
+            
+
+            <!-- Constraints, Dependencies, Dependants -->
+
+            
+                
+                
+
+
+                
+                
+
+
+                
+                
+
+            
+
+            <!-- Relationships -->
+
+            
+            
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='fc385879d6bf36345f7ed7be58eb0a1f.html'><span class='node-icon _icon-UMLGeneralization'></span>(AbstractCPN→AbstractPetriNet)</a></li>
+        
+    </ul>
+</section>
+
+
+
+            <!-- Owned Elements -->
+
+            
+            
+<section class="element-list">
+    <h3>Owned Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='fc385879d6bf36345f7ed7be58eb0a1f.html'><span class='node-icon _icon-UMLGeneralization'></span>(AbstractCPN→AbstractPetriNet)</a></li>
+        
+    </ul>
+</section>
+
+
+
+        </div>
+    </body>
+</html>

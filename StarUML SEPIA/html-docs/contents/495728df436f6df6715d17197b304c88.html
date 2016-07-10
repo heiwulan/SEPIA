@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AbstractPlace</title>
+        <!-- <script src="http://use.edgefonts.net/source-sans-pro;source-code-pro.js"></script> -->
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/icons.css">
+<script type="text/javascript" src="../assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.bonsai.js"></script>
+<!-- <script type="text/javascript" src="../assets/js/main.js"></script> -->
+
+    </head>
+    <body>
+        <div>
+
+            <!-- Name Title -->
+
+            <h1>AbstractPlace</h1>
+
+            <!-- Type and Stereotype -->
+
+            <section style="margin-top: .5em;">
+                <span class="alert alert-info">
+                    <span class="node-icon _icon-UMLClass"></span>
+                    UMLClass
+                </span>
+                
+            </section>
+
+            <!-- Path -->
+
+            <section style="margin-top: 10px">
+                
+                
+                
+                    
+                    <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon _icon-Project'></span>Untitled</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='e73cabc689efa8a8da3f69e008777956.html'><span class='node-icon _icon-UMLModel'></span>JavaReverse</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='95141f5a96012fbe8d61406e41a85797.html'><span class='node-icon _icon-UMLPackage'></span>de</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='dd1428e6e0dfe5c6405b3193bb09c89b.html'><span class='node-icon _icon-UMLPackage'></span>uni</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='0f5ce8af0d638c17450ac2e17b63245a.html'><span class='node-icon _icon-UMLPackage'></span>freiburg</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='dc71518dc306dcd3ffd255620e235c1a.html'><span class='node-icon _icon-UMLPackage'></span>iig</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='61fce7a73abe4b801126be3cb259a25a.html'><span class='node-icon _icon-UMLPackage'></span>telematik</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='fbd8dd6fc22963e6c21a5b8bf4a275ca.html'><span class='node-icon _icon-UMLPackage'></span>sepia</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='d2db10d44f093818644ad8eb3bdcd366.html'><span class='node-icon _icon-UMLPackage'></span>petrinet</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='0f5057520b3bf1613ffa29023a6fa3fc.html'><span class='node-icon _icon-UMLPackage'></span>abstr</a></span>
+                
+                    <span>::</span>
+                    <span class="label label-info"><a href='495728df436f6df6715d17197b304c88.html'><span class='node-icon _icon-UMLClass'></span>AbstractPlace</a></span>
+                
+            </section>
+
+            <!-- Diagram -->
+
+            
+
+            <!-- Description -->
+
+            
+            <section>
+                <h3>Description</h3>
+                <div>
+                    
+                        <p>Abstract class that defines general properties for Petri net places.&lt;br&gt;
+This class inherits basic Petri net node properties from {@link AbstractPNNode}&lt;br&gt;
+and defines additional properties:&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;Capacity: The maximum number of tokens that can reside in the place.&lt;br&gt;
+A capacity of -1 is interpreted as unboundedness, i.e. the number and kind of tokens is not restricted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+A place maintains a state of type S, which defines the number and kind of tokens in the place.&lt;br&gt;
+The type S is used for the internal state of the place and for adding and removing tokens from the place. A place allows {@link TokenListener}s to register so that they can be notified on state changes,&lt;br&gt;
+i.e. added/removed tokens.
+@author Thomas Stocker
+@param &lt;E&gt;
+The type of flow relations connected to the place.
+@param &lt;S&gt;
+Type for token number and type.</p>
+                    
+                </div>
+            </section>
+            
+
+            <!-- Specification -->
+
+            
+
+            <!-- Directed Relationship -->
+
+            
+
+            <!-- Undirected Relationship -->
+
+            
+
+            <!-- Classifier -->
+
+            
+                
+                
+<section class="element-list">
+    <h3>Generalized Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='293ae5cdf8c3e0fa3c1763bfde1e24e9.html'><span class='node-icon _icon-UMLClass'></span>AbstractPNNode</a></li>
+        
+    </ul>
+</section>
+
+
+
+                
+                
+
+
+                
+                
+<section class="element-list">
+    <h3>Interfaces</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='d656f80379d93f6b1b692a553527f2dd.html'><span class='node-icon _icon-UMLInterface'></span>Serializable</a></li>
+        
+    </ul>
+</section>
+
+
+
+                
+                
+
+
+                
+                
+
+            
+
+            <!-- Interface -->
+
+            
+
+            <!-- Component -->
+
+            
+
+            <!-- Node -->
+
+            
+
+            <!-- Actor -->
+
+            
+
+            <!-- Use Case -->
+
+            
+
+            <!-- Template Parameters -->
+
+            
+            <section>
+                <h3>Template Parameters</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="492af5ff1dc4c90d7531ae95a7894d3c.html">E</a></td>
+                        <td>AbstractFlowRelation&lt;?</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="76423eaef673dd5f8750ed045624c6b1.html">S&gt;</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="39e36ddc1fb6118d370c09d263de6769.html">?</a></td>
+                        <td>AbstractTransition&lt;E</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="18f59e2d129a28911aa8c28eaac35080.html">S&gt;</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="f7a372517d5102536b7cdf4da7c12392.html">S&gt;</a></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="79970b048efb92ad9242732ed57144f5.html">S</a></td>
+                        <td>Object</td>
+                        <td></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Literals -->
+
+            
+
+            <!-- Attributes -->
+
+            
+            <section>
+                <h3>Attributes</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>private</td>
+                        <td><a href="8f09d2c3121ed39a279a677a0cf31098.html">serialVersionUID</a></td>
+                        <td>long</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="73abe7ce4f8e7e69a4bbd340257db471.html">tokenListenerSupport</a></td>
+                        <td><a href='e337bec281baa26ac110ee8d558088ec.html'>TokenListenerSupport</a></td>
+                        <td><p>Support class for {@link TokenListener} handling.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="8bcb1411479133606be70fae2d6ecd84.html">placeListenerSupport</a></td>
+                        <td><a href='50240d10f0291480bbdecad959b6c869.html'>PlaceListenerSupport</a></td>
+                        <td><p>Support class for {@link PlaceListener} handling.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="54e79fb6daba28a5e701ff5928fdc99d.html">capacity</a></td>
+                        <td>int</td>
+                        <td><p>Capacity of the place, i.e. the maximum number of tokens the place can hold.&lt;br&gt;
+A capacity of -1 is interpreted as unboundedness, i.e. the number and kind of tokens is not restricted.</p></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Operations -->
+
+            
+            <section>
+                <h3>Operations</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Visibility</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="4bfcf34989ed8d81fb693bef2b51b220.html">AbstractPlace(name: String)</a></td>
+                        <td><p>Creates a new place with the given name.
+@param name The name for the new Place.
+@throws ParameterException If the given name is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="0bd947892b999438fbf9870429093916.html">AbstractPlace(name: String, label: String)</a></td>
+                        <td><p>Creates a new place with the given name and label.
+@param name
+The name for the new place.
+@param label
+The label for the new place.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="59f0a6906962065e5acb8b719dcb5361.html">getCapacity(): int</a></td>
+                        <td><p>Returns the capacity of the place, i.e.&lt;br&gt;
+the maximum number of tokens the place can hold.
+@return The capacity of the place.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="fbbf48f687ca859f3efc4c1a0c8c575b.html">setCapacity(capacity: int): void</a></td>
+                        <td><p>Sets the capacity of the place, i.e.&lt;br&gt;
+the maximum number of tokens the place can hold.&lt;br&gt;
+The capacity must be &gt; 0.
+@param capacity
+The desired capacity.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="c4c740eaf7e3f9cb6679d6e9fb61dcc4.html">removeCapacity(): void</a></td>
+                        <td><p>Removes the capacity restriction of the place, i.e.&lt;br&gt;
+the maximum number of tokens the place can hold.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="d7e191d19222fdc945b8310bcc541a80.html">isBounded(): boolean</a></td>
+                        <td><p>Checks, if the place is bounded.&lt;br&gt;
+Bounded places restrict the number and kind of tokens that can reside in the place.&lt;br&gt;
+A capacity of -1 is interpreted as unboundedness.
+@return &lt;code&gt;true&lt;/code&gt; if the place is bounded,&lt;br&gt;
+&lt;code&gt;false&lt;/code&gt; otherwise.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="f7b785c2ec610f8d4f0eebe02a40e505.html">hasEqualRelations(otherPlace: AbstractPlace): boolean</a></td>
+                        <td><p>checks if this place and the given place have the same relations.
+@param otherPlace
+The place in question.
+@return &lt;code&gt;true&lt;/code&gt; if the two places have the same relations;&lt;br&gt;
+&lt;code&gt;false&lt;/code&gt; otherwise.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="0c0c7dcf665dbfee1fae24f27ac56515.html">outDegree(): int</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="1f3507eda206a134d9a249d3efbf311e.html">inDegree(): int</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="1552fe447bcbe8600cf3d1e79bf953d3.html">getState(): S</a></td>
+                        <td><p>Returns the state of the place in terms of number and kind of tokens.&lt;br&gt;
+The returned state should NOT be used to manually add or remove tokens from a place.&lt;br&gt;
+Token adding/removal is done by Petri net transitions.
+@return The actual state of the place.
+@see AbstractPlace#state</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="0aca31b7504078898c24183e50b3f08b.html">setState(state: S): boolean</a></td>
+                        <td><p>Sets the state of the place in terms of number and kind of tokens if the place is not already in this state.&lt;br&gt;
+Before the state is set, its validity is checked with the help of {@link #validateState(Object)}.&lt;br&gt;
+On state changes, the place tells connected transitions to update their state&lt;br&gt;
+and calls the method {@link #stateChange(Object, Object)} which can be &lt;br&gt;
+overridden in subclasses to take further actions on state changes.
+@param state
+The desired state of the place.
+@return &lt;code&gt;true&lt;/code&gt; if the actual place state was changed to the given state;&lt;br&gt;
+&lt;code&gt;false&lt;/code&gt; if the place is already in the given state.
+@see #initiateStateChecks()</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="0e9178797081440610d175a05688ba02.html">addTokens(tokens: S): void</a></td>
+                        <td><p>Adds all given tokens to the place.&lt;br&gt;
+The number and type of tokens to add are defined by type S.
+@param tokens
+The number and type of tokens to add.
+@throws ParameterException
+If the given parameter is &lt;code&gt;null&lt;/code&gt; or invalid,&lt;br&gt;
+or if the tokens cannot be added to the place, e.g. due to capacity restrictions.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="a84c33869cd5bab033a78f911fc3b5d1.html">removeTokens(tokens: S): void</a></td>
+                        <td><p>Removes all given tokens from the place.&lt;br&gt;
+The number and type of tokens to remove are defined by type S.
+@param tokens
+The number and type of tokens to remove.
+@throws ParameterException
+If the given parameter is &lt;code&gt;null&lt;/code&gt; or invalid,&lt;br&gt;
+or if the tokens cannot be removed from the place.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="af3f63a98320eb1ec00aec59b1362bda.html">canConsume(state: S): boolean</a></td>
+                        <td><p>Checks, if the place can consume the given state, i.e.&lt;br&gt;
+merging the actual state and the given state does not exceed the places&#39; capacity.&lt;br&gt;
+This method does NOT actually &quot;add&quot; the given state to the places&#39; actual state.
+@param state
+The state to merge.
+@return &lt;code&gt;true&lt;/code&gt; if the place can consume the state;&lt;br&gt;
+&lt;code&gt;false&lt;/code&gt; otherwise.
+@throws ParameterException
+if the given state is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="b6c7c313c2afa61a4931e4117df4b104.html">hasEmptyState(): boolean</a></td>
+                        <td><p>Checks if the place state is empty, i.e. the place contains no tokens.&lt;br&gt;
+Depending on the state representation this may require different check routines,&lt;br&gt;
+which have to be implemented by subclasses.
+@return &lt;code&gt;true&lt;/code&gt; if the place contains not tokens;&lt;br&gt;
+&lt;code&gt;false&lt;/code&gt; otherwise.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="7b172ea306193649910f0adfc11a76ff.html">setEmptyState(): boolean</a></td>
+                        <td><p>Sets the state of the place in empty condition, i.e. removes all tokens from the place.&lt;br&gt;
+Depending on the state representation this may require different check routines,&lt;br&gt;
+which have to be implemented by subclasses.
+@see #getEmptyState()</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="d95fd5294ab17bc809e6ac61c616d3d8.html">getEmptyState(): S</a></td>
+                        <td><p>Gets the state of the place in empty condition.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="2e4a5fa9c22dcdf2f3a0c3700dac4816.html">stateChange(oldState: S, newState: S): void</a></td>
+                        <td><p>This method is called by {@link #setState(Object)} in case of state changes.&lt;br&gt;
+It can be overridden in subclasses to take further actions on state changes.
+@param oldState
+Old place state before change.
+@param newState
+New place state after change.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="3984bdd1356e2bbabeb1bed98f0f699a.html">initiateStateChecks(): void</a></td>
+                        <td><p>Tells outgoing transitions to update their state.&lt;br&gt;
+Depending on token changes outgoing transitions may get enabled/disabled.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="61837c0117bd5aa9e91013a6ed79924e.html">checkValidity(): void</a></td>
+                        <td><p>Checks if the Petri net place is valid.&lt;br&gt;
+Subclasses may define the validity of a net place e.g. in terms of specific constraints and must throw PNValidationExceptions in case any constraint is violated.
+@throws PNValidationException</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="b65dfa1f76f05cfecc37af2a5a99747f.html">validateState(state: S): void</a></td>
+                        <td><p>Checks if the given state is valid.&lt;br&gt;
+The exact definition of validity can be defined in subclasses by overriding this method.&lt;br&gt;
+Default behavior is to check &lt;code&gt;null&lt;/code&gt;-pointers.
+@param state
+The state to validate.
+@throws ParameterException
+If the given state is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="fd01135a7e648c0aee403041148a711b.html">addTokenListener(l: TokenListener): void</a></td>
+                        <td><p>Adds a token listener.
+@param l
+The token listener to add.
+@throws ParameterException
+If the listener reference is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="3826624046a9e79ad70c0da015da67ed.html">removeTokenListener(l: TokenListener): void</a></td>
+                        <td><p>Removes a token listener.
+@param l
+The token listener to remove.
+@throws ParameterException
+If the listener reference is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="adfa17f1501b16fbb2c1b90680eb5c56.html">addPlaceListener(l: PlaceListener): void</a></td>
+                        <td><p>Adds a capacity listener.
+@param l The capacity listener to add.
+@throws ParameterException If the listener reference is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="b6e703aa77402eac08ea463f284efc8c.html">removePlaceListener(l: PlaceListener): void</a></td>
+                        <td><p>Removes a capacity listener.
+@param l The capacity listener to remove.
+@throws ParameterException If the listener reference is &lt;code&gt;null&lt;/code&gt;.</p></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="c302d2ecb103fed1d6660ba991ee4e5e.html">newInstance(name: String): AbstractPlace</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="5b8cf42a36ffbd268c4b35141210f1ae.html">hashCode(): int</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="13bcda155ac75ccf9aae869627934912.html">equals(obj: Object): boolean</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>public</td>
+                        <td><a href="52958b003c75ec0e8880353306315f26.html">clone(): AbstractPlace</a></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>protected</td>
+                        <td><a href="b2242650bebe6b265214c7f4ba22cc0f.html">cloneCapacity(clone: AbstractPlace): void</a></td>
+                        <td></td>
+                    </tr>
+                    
+                </table>
+            </section>
+            
+
+            <!-- Receptions -->
+
+            
+
+            <!-- Extension Points -->
+
+            
+
+            <!-- Parameters -->
+
+            
+
+            <!-- Diagrams -->
+
+            
+            
+
+            <!-- Behavior -->
+
+            
+
+            <!-- Action -->
+
+            
+
+            <!-- Interaction -->
+
+            
+
+            <!-- CombinedFragment -->
+
+            
+
+            <!-- Activity -->
+
+            
+
+            <!-- State Machine -->
+
+            
+
+            <!-- State Machine -->
+
+            
+
+            <!-- State -->
+
+            
+
+            <!-- Vertex -->
+
+            
+
+            <!-- Transition -->
+
+            
+
+            <!-- Properties -->
+
+            <section>
+                <h3>Properties</h3>
+                
+                <table class="table table-striped table-bordered">
+    <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Value</th>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>name</td>
+        <td>AbstractPlace</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>stereotype</td>
+        <td><span class='label label-info'>null</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>visibility</td>
+        <td>public</td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <tr>
+        <td>isAbstract</td>
+        <td><span class='label label-info'>true</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isFinalSpecialization</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isLeaf</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>isActive</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+</table>                
+
+            </section>
+
+            <!-- Tags -->
+
+            
+
+            <!-- Constraints, Dependencies, Dependants -->
+
+            
+                
+                
+
+
+                
+                
+<section class="element-list">
+    <h3>Dependencies</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='d656f80379d93f6b1b692a553527f2dd.html'><span class='node-icon _icon-UMLInterface'></span>Serializable</a></li>
+        
+    </ul>
+</section>
+
+
+
+                
+                
+
+            
+
+            <!-- Relationships -->
+
+            
+            
+<section class="element-list">
+    <h3>Relationships</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='d8db7f82e9e92311054a81e698adecab.html'><span class='node-icon _icon-UMLGeneralization'></span>(AbstractPlace→AbstractPNNode)</a></li>
+        
+        <li><a href='a60c99122ce6ad7f795f1b2e7ffef22b.html'><span class='node-icon _icon-UMLInterfaceRealization'></span>(AbstractPlace→Serializable)</a></li>
+        
+        <li><a href='d4bc53c2769067b1325a2089e62122e1.html'><span class='node-icon _icon-UMLAssociation'></span>(AbstractPlace—S)</a></li>
+        
+    </ul>
+</section>
+
+
+
+            <!-- Owned Elements -->
+
+            
+            
+<section class="element-list">
+    <h3>Owned Elements</h3>
+    <ul class="nav nav-list">
+        
+        <li><a href='d8db7f82e9e92311054a81e698adecab.html'><span class='node-icon _icon-UMLGeneralization'></span>(AbstractPlace→AbstractPNNode)</a></li>
+        
+        <li><a href='a60c99122ce6ad7f795f1b2e7ffef22b.html'><span class='node-icon _icon-UMLInterfaceRealization'></span>(AbstractPlace→Serializable)</a></li>
+        
+        <li><a href='d4bc53c2769067b1325a2089e62122e1.html'><span class='node-icon _icon-UMLAssociation'></span>(AbstractPlace—S)</a></li>
+        
+    </ul>
+</section>
+
+
+
+        </div>
+    </body>
+</html>
