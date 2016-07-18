@@ -74,14 +74,15 @@ public class TestXidian {
 		
 		// test2();
 		// test3();
-		// test4();
+		test4();
 		// test5();
 		// test6();
 		// test7();
-		test8();
+		// test8();
 	}
 	
 	// basic petri net
+	// p1 -> t1 -> p2
 	static void test1() throws PNException {
 		PTNet ptnet = new PTNet();
 		// add elements
@@ -112,6 +113,7 @@ public class TestXidian {
 	}
 	
 	// P/T-Nets: Place/Trnsition Nets
+	// p1 -> t1 -> p2 -> t2
 	static void test2() {
 		PTNet ptnet = new PTNet();
 		// add elements
@@ -165,6 +167,7 @@ public class TestXidian {
 			System.out.println("this P/T-Nets is not sound.");
 		}
 		try {
+			// 开启了新的线程
 			BoundednessCheckResult<PTPlace, PTTransition, PTFlowRelation, PTMarking, Integer> boundedness = BoundednessCheck.getBoundedness(ptnet);
 			// 或
 			// BoundednessCheckResult boundedness = BoundednessCheck.getBoundedness(ptnet);
@@ -174,36 +177,40 @@ public class TestXidian {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Number of outgoing relations from the place:");
 		// Number of outgoing relations from the place
 		System.out.println(ptnet.getPlace("p1").outDegree()); // 1
+		System.out.println("Are there enough tokens in the input places?");
 		// Are there enough tokens in the input places?
 		System.out.println(ptnet.getTransition("t1").isEnabled()); // false
 		
-		// Check(Observer Pattern)
-		System.out.println("=== Check(Observer Pattern) ====");
+		// Check(Observer Pattern),开启新的线程计算，监听结果
+		System.out.println("=== test2 Check(Observer Pattern) ====");
 		try {
 			BoundednessCheck.initiateBoundednessCheck(ptnet, 
 					new ExecutorListener<BoundednessCheckResult<PTPlace,PTTransition,
 					PTFlowRelation,PTMarking,Integer>>() {
 				@Override
-				public void executorStarted() {}
+				public void executorStarted() {
+					System.out.println("test 2 Observer started...");
+				}
 							
 				@Override
 				public void executorFinished(BoundednessCheckResult<
 						PTPlace, PTTransition, PTFlowRelation, PTMarking, Integer> result) {
-					System.out.println("Observer: " + result.getBoundedness()); // BOUNDED
+					System.out.println("test 2 Observer: " + result.getBoundedness()); // BOUNDED
 				}
 
 				@Override
 				public void executorStopped() {
 					// TODO Auto-generated method stub
-					
+					System.out.println("test 2 Observer stoped!");
 				}
 
 				@Override
 				public void executorException(Exception exception) {
 					// TODO Auto-generated method stub
-					
+					System.out.println("test 2 Observer exception!");
 				}
 
 				@Override
@@ -283,6 +290,8 @@ public class TestXidian {
 		// 不知如何使用mg
 		try {
 			PTMarkingGraph mg = (PTMarkingGraph) MGConstruction.buildMarkingGraph(ptnet);
+			System.out.println("PTMarkingGraph");
+			System.out.println(mg);
 		} catch (MarkingGraphException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
