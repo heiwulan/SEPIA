@@ -74,11 +74,7 @@ public class TestXidian {
 		
 		// test2();
 		// test3();
-<<<<<<< HEAD
-	    test4();
-=======
 		test4();
->>>>>>> origin/master
 		// test5();
 		// test6();
 		// test7();
