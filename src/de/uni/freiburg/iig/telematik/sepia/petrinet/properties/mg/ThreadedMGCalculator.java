@@ -12,7 +12,11 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.threaded.AbstractThreadedPNPropertyChecker;
 
 /**
- * 独立线程，计算标识图
+ * 独立线程，计算标识图(Marking Graph),即可达图，包含网的所有标识（状态）的图
+ * 
+ * MGConstructorCallable提供Callable
+ * AbstractThreadedPNPropertyChecker提供thread service
+ * 
  * @author Administrator
  *
  * @param <P>  Place类型
