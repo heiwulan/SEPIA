@@ -74,11 +74,11 @@ public class TestXidian {
 		
 		// test2();
 		// test3();
-		// test4();
+	    test4();
 		// test5();
 		// test6();
 		// test7();
-		test8();
+		// test8();
 	}
 	
 	// basic petri net
@@ -242,9 +242,13 @@ public class TestXidian {
 		System.out.println("===Petri Net Traversal====");
 		RandomPTTraverser t = new RandomPTTraverser(ptnet);
 		for (int i = 1; ptnet.hasEnabledTransitions(); i++) {
-			System.out.println(i + ": " + ptnet.getEnabledTransitions().size()); // 1： 1
+			System.out.println(i + ": " + ptnet.getEnabledTransitions().size()); // 1: 2
+			                                                                     // 2: 1
 			try {
-				t.chooseNextTransition(ptnet.getEnabledTransitions()).fire();
+				PTTransition tran = t.chooseNextTransition(ptnet.getEnabledTransitions());
+				System.out.println("chooseNextTransition: " + tran);
+				// t.chooseNextTransition(ptnet.getEnabledTransitions()).fire();
+				tran.fire();
 			} catch (InconsistencyException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -252,6 +256,7 @@ public class TestXidian {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(ptnet);
 		}
 		System.out.println("no more enabled transitions");
 		
