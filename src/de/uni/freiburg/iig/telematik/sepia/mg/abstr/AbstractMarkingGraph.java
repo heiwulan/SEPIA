@@ -9,7 +9,11 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractMarking;
 
 
 
-public abstract class AbstractMarkingGraph<M extends AbstractMarking<O>, O extends Object, S extends AbstractMarkingGraphState<M,O>, R extends AbstractLabeledTransitionRelation<S,Event,M>> extends AbstractLabeledTransitionSystem<Event,S,R,M> {
+public abstract class AbstractMarkingGraph<M extends AbstractMarking<O>, 
+                                           O extends Object, 
+                                           S extends AbstractMarkingGraphState<M,O>, 
+                                           R extends AbstractLabeledTransitionRelation<S,Event,M>> 
+                      extends AbstractLabeledTransitionSystem<Event,S,R,M> {
 
 	private static final long serialVersionUID = 5262052130079149612L;
 	

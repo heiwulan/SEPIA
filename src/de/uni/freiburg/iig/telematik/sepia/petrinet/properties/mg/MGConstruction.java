@@ -8,6 +8,11 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPetriNet;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPlace;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 
+/**
+ * 建立标识图（Marking Graph），几个静态方法的封装
+ * Builds the marking graph for the given Petri net,<br>
+ * i.e. a graph containing all reachable markings and their relation.<br>
+ */
 public class MGConstruction {
 	
 	public static final int MAX_RG_CALCULATION_STEPS = Integer.MAX_VALUE;
