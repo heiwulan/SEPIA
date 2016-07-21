@@ -11,6 +11,16 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPlace;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.threaded.AbstractThreadedPNPropertyChecker;
 
+/**
+ * 独立线程，计算标识图
+ * @author Administrator
+ *
+ * @param <P>  Place类型
+ * @param <T>  Transition类型
+ * @param <F>  FlowRelation类型
+ * @param <M>  Marking类型
+ * @param <S>  Token或FlowRelation类型
+ */
 public class ThreadedMGCalculator<	P extends AbstractPlace<F,S>, 
 									T extends AbstractTransition<F,S>, 
 									F extends AbstractFlowRelation<P,T,S>, 

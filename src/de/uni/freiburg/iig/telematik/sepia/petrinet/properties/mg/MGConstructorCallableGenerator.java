@@ -8,11 +8,22 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.boundedness.BoundednessCheckGenerator;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.threaded.AbstractCallableGenerator;
 
+/**
+ * 
+ * @author Administrator
+ *
+ * @param <P>  Place类型
+ * @param <T>  Transition类型
+ * @param <F>  FlowRelation类型
+ * @param <M>  Marking类型
+ * @param <S>  Token或FlowRelation类型
+ */
 public class MGConstructorCallableGenerator<P extends AbstractPlace<F,S>, 
 											T extends AbstractTransition<F,S>, 
 											F extends AbstractFlowRelation<P,T,S>, 
 											M extends AbstractMarking<S>, 
-											S extends Object> extends AbstractCallableGenerator<P,T,F,M,S> {
+											S extends Object> 
+                                          extends AbstractCallableGenerator<P,T,F,M,S> {
 
 	public MGConstructorCallableGenerator(AbstractPetriNet<P,T,F,M,S> petriNet) {
 		super(petriNet);
