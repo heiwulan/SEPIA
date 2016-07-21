@@ -13,11 +13,24 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPlace;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.threaded.AbstractPNPropertyCheckerCallable;
 
+/**
+ * 封装计算标识图(MarkingGraph)的Callable
+ * 计算任务在callRoutine()中完成。
+ * 计算结果类型是标识图AbstractMarkingGraph<M,S,?,?>
+ * @author Administrator
+ *
+ * @param <P>  Place类型
+ * @param <T>  Transition类型
+ * @param <F>  FlowRelation类型
+ * @param <M>  Marking类型
+ * @param <S>  Token或FlowRelation类型
+ */
 public class MGConstructorCallable< P extends AbstractPlace<F,S>, 
 									T extends AbstractTransition<F,S>, 
 									F extends AbstractFlowRelation<P,T,S>, 
 									M extends AbstractMarking<S>, 
-									S extends Object> extends AbstractPNPropertyCheckerCallable<P,T,F,M,S,AbstractMarkingGraph<M,S,?,?>> {
+									S extends Object> 
+            extends AbstractPNPropertyCheckerCallable<P,T,F,M,S,AbstractMarkingGraph<M,S,?,?>> {
 	
 	private static final String rgGraphNodeFormat = "s%s";
 	
@@ -25,26 +38,32 @@ public class MGConstructorCallable< P extends AbstractPlace<F,S>,
 		super(generator);
 	}
 	
+	/**
+	 * 计算标识图（MarkingGraph）
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractMarkingGraph<M,S,?,?> callRoutine() throws MarkingGraphException, InterruptedException {
-		
+		// 保存当前网标识(Marking)
 		M savedMarking = (M) getGenerator().getPetriNet().getMarking().clone();
+		// 保存标识的队列
 		ArrayBlockingQueue<M> queue = new ArrayBlockingQueue<M>(10);
-		Set<M> allKnownStates = new HashSet<M>();
+		// 已知标识集（状态集）
+		Set<M> allKnownStates = new HashSet<M>();  
 
-		allKnownStates.add(getGenerator().getPetriNet().getInitialMarking());
-		AbstractMarkingGraph<M,S,?,?> markingGraph = null;
+		allKnownStates.add(getGenerator().getPetriNet().getInitialMarking()); // add 初始标识 至已知标识集
+		AbstractMarkingGraph<M,S,?,?> markingGraph = null;  
 		try{
 			markingGraph = (AbstractMarkingGraph<M,S,?,?>) getGenerator().getPetriNet().getMarkingGraphClass().newInstance();
 		} catch (Exception e) {
 			throw new MarkingGraphException("Cannot create new instance of marking graph class", e);
 		}
 		int stateCount = 0;
-		Map<String, String> stateNames = new HashMap<String, String>();
-		M initialMarking = getGenerator().getPetriNet().getInitialMarking();
-		queue.offer(initialMarking);
-		String stateName = String.format(rgGraphNodeFormat, stateCount++);
+		// <标识.toString(),状态名称>，状态名称：即图的顶点名称，每一标识Marking对应一个状态State
+		Map<String, String> stateNames = new HashMap<String, String>(); 
+		M initialMarking = getGenerator().getPetriNet().getInitialMarking(); // 初始状态，标识
+		queue.offer(initialMarking); // 初始标识进入队列
+		String stateName = String.format(rgGraphNodeFormat, stateCount++); // 状态名称，s0(初始标识),s1,s2...
 		markingGraph.addState(stateName, (M) initialMarking.clone());
 		markingGraph.setInitialState(stateName);
 		markingGraph.addStartState(stateName);
@@ -62,13 +81,13 @@ public class MGConstructorCallable< P extends AbstractPlace<F,S>,
 					getGenerator().getPetriNet().setMarking(savedMarking);
 					throw new StateSpaceException("Reached maximum calculation steps for building marking graph.");
 				}
-				M nextMarking = queue.poll();
+				M nextMarking = queue.poll(); // 出队列
 				getGenerator().getPetriNet().setMarking(nextMarking);
 //				M marking = (M) nextMarking.clone();
 				String nextStateName = stateNames.get(nextMarking.toString());
 //				System.out.println("Next marking (" + nextStateName + "): " + nextMarking);
 
-				if(getGenerator().getPetriNet().hasEnabledTransitions()){
+				if(getGenerator().getPetriNet().hasEnabledTransitions()){ // 如果有使能变迁
 					String newStateName = null;
 					for (T enabledTransition : getGenerator().getPetriNet().getEnabledTransitions()) {
 
@@ -88,7 +107,7 @@ public class MGConstructorCallable< P extends AbstractPlace<F,S>,
 						if(equalMarking == null) {
 							// This is a new marking
 //							System.out.println("   -> New marking");
-							queue.offer(newMarking);
+							queue.offer(newMarking); // 入列
 							allKnownStates.add((M) newMarking.clone());
 							newStateName = String.format(rgGraphNodeFormat, stateCount++);
 							markingGraph.addState(newStateName, (M) newMarking.clone());
@@ -104,7 +123,7 @@ public class MGConstructorCallable< P extends AbstractPlace<F,S>,
 //						System.out.println("   add relation: " + nextStateName + " to " + newStateName + " via " + enabledTransition.getName());
 						markingGraph.addRelation(nextStateName, newStateName, enabledTransition.getName());
 					}
-				} else {
+				} else { // 没有使能变迁
 					markingGraph.addEndState(nextStateName);
 				}
 			}
@@ -113,6 +132,8 @@ public class MGConstructorCallable< P extends AbstractPlace<F,S>,
 		} catch (Exception e) {
 			throw new MarkingGraphException("Exception during marking graph construction.<br>Reason: " + e.getMessage(), e);
 		}
+		
+		// 恢复网标识到原来的状态
 		getGenerator().getPetriNet().setMarking(savedMarking);
 		return markingGraph;
 	}
