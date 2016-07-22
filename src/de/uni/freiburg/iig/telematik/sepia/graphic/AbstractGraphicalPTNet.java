@@ -19,7 +19,8 @@ public abstract class AbstractGraphicalPTNet<P extends AbstractPTPlace<F>,
 											 F extends AbstractPTFlowRelation<P, T>, 
 											 M extends AbstractPTMarking,
 											 N extends AbstractPTNet<P,T,F,M>,
-			   							  	 G extends AbstractPTGraphics<P,T,F,M>> extends AbstractGraphicalPN<P, T, F, M, Integer, N, G> {
+			   							  	 G extends AbstractPTGraphics<P,T,F,M>> 
+                                          extends AbstractGraphicalPN<P, T, F, M, Integer, N, G> {
 
 	public AbstractGraphicalPTNet(N petriNet, G petriNetGraphics) {
 		super(petriNet, petriNetGraphics);

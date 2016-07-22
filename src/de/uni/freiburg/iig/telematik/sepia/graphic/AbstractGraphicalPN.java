@@ -30,11 +30,13 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
  * @param <S> Type of Petri net place states
  */
 public abstract class AbstractGraphicalPN<P extends AbstractPlace<F, S>, 
-                                            T extends AbstractTransition<F, S>, 
-                                            F extends AbstractFlowRelation<P, T, S>, 
-                                            M extends AbstractMarking<S>, S extends Object, 
-                                            N extends AbstractPetriNet<P, T, F, M, S>, 
-                                            G extends AbstractPNGraphics<P, T, F, M, S>> implements PNStructureListener<P, T, F, M, S>, NamedComponent {
+                                          T extends AbstractTransition<F, S>, 
+                                          F extends AbstractFlowRelation<P, T, S>, 
+                                          M extends AbstractMarking<S>, 
+                                          S extends Object, 
+                                          N extends AbstractPetriNet<P, T, F, M, S>, 
+                                          G extends AbstractPNGraphics<P, T, F, M, S>>
+		                       implements PNStructureListener<P, T, F, M, S>, NamedComponent {
 
     private N petriNet = null;
     private G petriNetGraphics = null;

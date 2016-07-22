@@ -4,7 +4,9 @@ import de.uni.freiburg.iig.telematik.jagal.ts.Event;
 import de.uni.freiburg.iig.telematik.jagal.ts.labeled.abstr.AbstractLTSState;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractMarking;
 
-public abstract class AbstractMarkingGraphState<M extends AbstractMarking<O>, O extends Object> extends AbstractLTSState<Event, M>{
+public abstract class AbstractMarkingGraphState<M extends AbstractMarking<O>, 
+                                                O extends Object> 
+                                               extends AbstractLTSState<Event, M>{
 
 	private static final long serialVersionUID = -8967433624218295335L;
 

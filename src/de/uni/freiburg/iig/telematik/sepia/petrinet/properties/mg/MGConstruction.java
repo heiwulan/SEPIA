@@ -22,6 +22,7 @@ public class MGConstruction {
 	 * i.e. a graph containing all reachable markings and their relation.<br>
 	 *  
 	 * @param petriNet The basic Petri net for operation.
+	 * @param listener 监听标识图计算情况，开始、停止、结束、异常等
 	 * @throws MarkingGraphException
 	 */
 	public static <	P extends AbstractPlace<F,S>, 
@@ -41,6 +42,7 @@ public class MGConstruction {
 	 * i.e. a graph containing all reachable markings and their relation.<br>
 	 *  
 	 * @param calculator The marking graph calculator.
+	 * @param listener 监听标识图计算情况，开始、停止、结束、异常等
 	 * @throws MarkingGraphException
 	 */
 	public static <	P extends AbstractPlace<F,S>, 
@@ -60,9 +62,9 @@ public class MGConstruction {
 	/**
 	 * Builds the marking graph for the given Petri net,<br>
 	 * i.e. a graph containing all reachable markings and their relation.<br>
-	 *
+	 * 调用线程，阻塞于此，等待执行结果，结束，开始向下执行
 	 * @param calculator The marking graph calculator.
-	 * @return The marking graph of the given Petri net.
+	 * @return The marking graph of the given Petri net. 
 	 * @throws MarkingGraphException
 	 */
 	public static <	P extends AbstractPlace<F,S>, 
@@ -82,7 +84,7 @@ public class MGConstruction {
 	/**
 	 * Builds the marking graph for the given Petri net,<br>
 	 * i.e. a graph containing all reachable markings and their relation.<br>
-	 *  
+	 * 调用线程，阻塞于此，等待执行结果，结束，开始向下执行
 	 * @param petriNet The basic Petri net for operation.
 	 * @return The marking graph of the given Petri net.
 	 * @throws MarkingGraphException
