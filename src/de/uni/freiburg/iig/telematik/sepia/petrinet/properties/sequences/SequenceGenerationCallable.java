@@ -28,7 +28,8 @@ public class SequenceGenerationCallable<P extends AbstractPlace<F,S>,
 										T extends AbstractTransition<F,S>, 
 										F extends AbstractFlowRelation<P,T,S>, 
 										M extends AbstractMarking<S>, 
-										S extends Object> extends AbstractPNPropertyCheckerCallable<P,T,F,M,S,MGTraversalResult> {
+										S extends Object> 
+            extends AbstractPNPropertyCheckerCallable<P,T,F,M,S,MGTraversalResult> {
 
 	public SequenceGenerationCallable(SequenceGenerationCallableGenerator<P,T,F,M,S> generator) {
 		super(generator);
