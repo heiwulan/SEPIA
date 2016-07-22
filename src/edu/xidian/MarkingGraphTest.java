@@ -1,6 +1,5 @@
 package edu.xidian;
 
-import de.uni.freiburg.iig.telematik.sepia.generator.PNGenerator;
 import de.uni.freiburg.iig.telematik.sepia.mg.pt.PTMarkingGraph;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.mg.MGConstruction;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.mg.MarkingGraphException;
