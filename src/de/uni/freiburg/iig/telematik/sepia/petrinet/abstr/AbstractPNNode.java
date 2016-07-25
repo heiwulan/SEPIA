@@ -66,7 +66,9 @@ import java.util.Map;
  * @see AbstractPlace
  * @see AbstractTransition
  */
-public abstract class AbstractPNNode<E extends AbstractFlowRelation<? extends AbstractPlace<E,?>, ? extends AbstractTransition<E,?>, ?>> implements Serializable{
+public abstract class AbstractPNNode<E extends AbstractFlowRelation<? extends AbstractPlace<E,?>, 
+		                                                            ? extends AbstractTransition<E,?>, 
+		                                                            ?>> implements Serializable{
 	
 	private static final long serialVersionUID = -809201554674739116L;
 

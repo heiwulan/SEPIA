@@ -33,8 +33,8 @@ import de.uni.freiburg.iig.telematik.sepia.exception.PNValidationException;
  *            Type for token number and type.
  */
 public abstract class AbstractPlace<E extends AbstractFlowRelation<? extends AbstractPlace<E, S>, 
-									? extends AbstractTransition<E, S>, S>, 
-									S extends Object> 
+									                               ? extends AbstractTransition<E, S>, S>, 
+									                               S extends Object> 
 									extends AbstractPNNode<E> implements Serializable{
 
 	private static final long serialVersionUID = -4942014250666222432L;
