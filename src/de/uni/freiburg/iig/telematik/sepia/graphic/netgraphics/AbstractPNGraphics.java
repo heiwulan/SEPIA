@@ -12,7 +12,8 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 
 /**
  * <p>
- * Abstract petri net graphics super class. It contains all net type specific graphical information needed to draw the petri net.
+ * Abstract petri net graphics super class. 
+ * It contains all net type specific graphical information needed to draw the petri net.
  * </p>
  * 
  * @author Adrian Lange
