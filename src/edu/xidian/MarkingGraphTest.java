@@ -1,5 +1,8 @@
 package edu.xidian;
 
+import de.invation.code.toval.graphic.component.DisplayFrame;
+import de.uni.freiburg.iig.telematik.jagal.visualization.flexible.AbstractLabeledTransitionSystemComponent;
+import de.uni.freiburg.iig.telematik.sepia.generator.PNGenerator;
 import de.uni.freiburg.iig.telematik.sepia.mg.pt.PTMarkingGraph;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.mg.MGConstruction;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.properties.mg.MarkingGraphException;
@@ -7,14 +10,15 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.pt.PTNet;
 
 public class MarkingGraphTest {
 	public static void main(String[] args) {
-		PTNet ptnet = CreatePetriNet.createPTnet1();       // states: 6
+		//PTNet ptnet = CreatePetriNet.createPTnet1();       // states: 6
 		//PTNet ptnet = PNGenerator.sharedResource(2, 1);  // states: 15
-		//PTNet ptnet = PNGenerator.producerConsumer(10, 1);  // states: 1860
+		PTNet ptnet = PNGenerator.producerConsumer(10, 1);  // states: 1860
 		System.out.println(ptnet);
 		
 		System.out.println("Caculator PTMarkingGraph....");
+		PTMarkingGraph mg = null;
 		try {
-			PTMarkingGraph mg = (PTMarkingGraph) MGConstruction.buildMarkingGraph(ptnet);
+			mg = (PTMarkingGraph) MGConstruction.buildMarkingGraph(ptnet);
 			int VertexNum = mg.getVertexCount();
 			System.out.println("PTMarkingGraph: Vertex Number(states) = " + VertexNum);
 			System.out.println(mg);
@@ -36,5 +40,14 @@ public class MarkingGraphTest {
 		            (s3, t3, s2)
 		            (s4, t2, s2)
 		 ***/
+		
+		try {
+			AbstractLabeledTransitionSystemComponent<PTMarkingGraph, ?, ?, ?, ?> component = new AbstractLabeledTransitionSystemComponent<>(mg);
+			component.initialize();
+			new DisplayFrame(component,true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
