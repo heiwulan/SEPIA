@@ -41,6 +41,7 @@ public class MarkingGraphTest {
 		            (s4, t2, s2)
 		 ***/
 		
+		/*** Display Marking Graph */
 		try {
 			AbstractLabeledTransitionSystemComponent<PTMarkingGraph, ?, ?, ?, ?> component = new AbstractLabeledTransitionSystemComponent<>(mg);
 			component.initialize();

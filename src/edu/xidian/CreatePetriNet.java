@@ -21,7 +21,25 @@ public class CreatePetriNet {
 		PTMarking marking = new PTMarking();
 		marking.set("p1", 2);
 		ptnet.setInitialMarking(marking);
-		//System.out.println(ptnet);
 		return ptnet;
+	}
+	
+	public static void main(String[] args) {
+		PTNet ptnet = CreatePetriNet.createPTnet1();
+		System.out.println(ptnet);
+		/***
+	     Petri-Net: PetriNet
+          places: [p1[p1], p2[p2]] 
+     transitions: [t1[t1], t2[t2], t3[t3]] 
+     flow-relation: 
+                  t2 -1-> p2
+                  t1 -1-> p2
+                  p1 -1-> t2
+                  p2 -1-> t3
+                  p1 -2-> t1
+ 
+      initial marking: p1[2]  
+      actual marking: p1[2]  
+		 */
 	}
 }
