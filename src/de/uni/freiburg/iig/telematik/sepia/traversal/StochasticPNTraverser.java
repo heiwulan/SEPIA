@@ -19,24 +19,45 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
  */
 public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends RandomPNTraverser<T> {
 	
+	/** 缺省容差分母 */
 	public static final int DEFAULT_TOLERANCE_DENOMINATOR = 1000;
 	private HashMap<T, StochasticValueGenerator<T>> flowProbabilities = new HashMap<T, StochasticValueGenerator<T>>();
 	private int toleranceDenominator;
-	
+	/**
+	 * 构造基于变迁概率的随机遍历，缺省容差分母：{@link #DEFAULT_TOLERANCE_DENOMINATOR}
+	 * @param net
+	 */
 	public StochasticPNTraverser(AbstractPetriNet<?,T,?,?,?> net) {
 		this(net, DEFAULT_TOLERANCE_DENOMINATOR);
 	}
 
+	/**
+	 * 构造基于变迁概率的随机遍历
+	 * @param net
+	 * @param toleranceDenominator 容差分母
+	 */
 	public StochasticPNTraverser(AbstractPetriNet<?,T,?,?,?> net, int toleranceDenominator) {
 		super(net);
 		Validate.biggerEqual(toleranceDenominator, 1, "Denominator must be >=1.");
 		this.toleranceDenominator = toleranceDenominator;
 	}
 	
+	/**
+	 * probability fromTransition to toTransition
+	 * @param fromTransitionID
+	 * @param toTransitionID
+	 * @param probability
+	 */
 	public void addFlowProbability(String fromTransitionID, String toTransitionID, double probability) {
 		addFlowProbability(net.getTransition(fromTransitionID), net.getTransition(toTransitionID), probability);
 	}
 	
+	/**
+	 * probability fromTransition to toTransition
+	 * @param fromTransition
+	 * @param toTransition
+	 * @param probability 0.0 to 1.0
+	 */
 	public void addFlowProbability(T fromTransition, T toTransition, double probability) {
 		Validate.notNull(fromTransition);
 		Validate.notNull(toTransition);
