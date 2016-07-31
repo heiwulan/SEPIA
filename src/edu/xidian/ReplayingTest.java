@@ -44,7 +44,6 @@ non-fitting traces for the given Petri net.
 			ReplayResult<LogEntry> result = Replay.replayTraces(gen);
 			System.out.println("result:\n" + result.getCount() + "," + result.getNumTraces() + "," + result.getNumSequences());
 			System.out.println("portionFitting: " + result.portionFitting());
-			System.out.println(result.toString());
 			System.out.println("portionNonFitting: " + result.portionNonFitting());
 			System.out.println("Fitting:\n" + result.getFittingTraces());
 			System.out.println("NonFitting:\n" + result.getNonFittingSequences());
