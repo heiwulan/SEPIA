@@ -28,7 +28,7 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 	
 	/** 缺省容差分母 */
 	public static final int DEFAULT_TOLERANCE_DENOMINATOR = 1000;
-	/** 变迁T*/
+	/** 变迁T后，各个变迁的概率。从t到t1，t2,t3的概率分别为0.2,0.3,0.5,总和必须为1. */
 	private HashMap<T, StochasticValueGenerator<T>> flowProbabilities = new HashMap<T, StochasticValueGenerator<T>>();
 	private int toleranceDenominator;
 	/**
