@@ -11,11 +11,11 @@ import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPetriNet;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 
 /**<pre>
- * 根据概率选择最后一次变迁后的一个变迁。
+ * 根据概率选择后一次变迁。
  * This flow control chooses the next transition to fire 
  * on the basis of predefined probabilities of occurrences of subsequent transition pairs.
  * chooseNextTransition()获取后一个变迁的规则：
- * 如果没有最后一次变迁，随机选择一个变迁t，做为第一个变迁
+ * 如果没有发射变迁过，随机选择一个变迁t，做为第一个变迁
  * 从t到t1，t2,t3的概率分别为0.2,0.3,0.5,总和必须为1.
  * 【addFlowProbability("t","t1",0.2); addFlowProbability("t","t2",0.3); addFlowProbability("t","t3",0.5);】
  * 根据概率，选择t之后的变迁，最大可能性是t3
@@ -83,7 +83,7 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 	}
 
 	/**
-	 * 如果没有最后一次变迁，随机选择一个变迁t，最为第一次变迁
+	 * 如果没有变迁发射过，随机选择一个变迁t，最为第一次变迁
 	 * 从t到t1，t2,t3的概率分别为0.2,0.3,0.5,总和必须为1,
 	 * 根据概率，选择t之后的变迁，最大可能性是t3
 	 */

@@ -10,7 +10,7 @@ import de.uni.freiburg.iig.telematik.sepia.traversal.StochasticPNTraverser;
 
 
 /**
- * 根据概率选择最后一次变迁后的一个变迁
+ * 根据概率选择后一次变迁
  * @author Administrator
  *
  */
