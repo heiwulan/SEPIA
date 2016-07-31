@@ -156,9 +156,11 @@ public class ReplayCallable< P extends AbstractPlace<F,S>,
 
 	public enum TerminationCriteria {
 		/** The trace relates to a possible sequence in given Petri net. 
+		 * All activities can be fired according to their order within the trace.
          */
 		POSSIBLE_FIRING_SEQUENCE,
 		/**
+		 * The trace relates to a complete firing sequence in the given Petri net. 
 		 * All activities can be fired according to their order within the trace. 
 		 * After firing the last activity, there must not be any enabled transitions.
 		 */
