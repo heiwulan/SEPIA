@@ -10,9 +10,16 @@ import de.invation.code.toval.validate.Validate;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractPetriNet;
 import de.uni.freiburg.iig.telematik.sepia.petrinet.abstr.AbstractTransition;
 
-/**
+/**<pre>
+ * 根据概率选择最后一次变迁后的一个变迁。
  * This flow control chooses the next transition to fire 
  * on the basis of predefined probabilities of occurrences of subsequent transition pairs.
+ * chooseNextTransition()获取后一个变迁的规则：
+ * 如果没有最后一次变迁，随机选择一个变迁t，做为第一个变迁
+ * 从t到t1，t2,t3的概率分别为0.2,0.3,0.5,总和必须为1.
+ * 【addFlowProbability("t","t1",0.2); addFlowProbability("t","t2",0.3); addFlowProbability("t","t3",0.5);】
+ * 根据概率，选择t之后的变迁，最大可能性是t3
+
  * 
  * @author Thomas Stocker
  *
@@ -21,7 +28,7 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 	
 	/** 缺省容差分母 */
 	public static final int DEFAULT_TOLERANCE_DENOMINATOR = 1000;
-	/** */
+	/** 变迁T*/
 	private HashMap<T, StochasticValueGenerator<T>> flowProbabilities = new HashMap<T, StochasticValueGenerator<T>>();
 	private int toleranceDenominator;
 	/**
@@ -44,7 +51,9 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 	}
 	
 	/**
-	 * probability fromTransition to toTransition
+	 * probability fromTransition to toTransition.
+	 * fromTransition开始到各个toTransition(s)的概率之和为1，如
+	 * addFlowProbability("t","t1",0.2); addFlowProbability("t","t2",0.3); addFlowProbability("t","t3",0.5);
 	 * @param fromTransitionID
 	 * @param toTransitionID
 	 * @param probability
@@ -54,8 +63,10 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 	}
 	
 	/**
-	 * probability fromTransition to toTransition
-	 * @param fromTransition
+	 * probability fromTransition to toTransition.
+	 * fromTransition开始到各个toTransition(s)的概率之和为1，如
+	 * addFlowProbability("t","t1",0.2); addFlowProbability("t","t2",0.3); addFlowProbability("t","t3",0.5);
+	 * @param fromTransition  
 	 * @param toTransition
 	 * @param probability 0.0 to 1.0
 	 */
@@ -71,10 +82,15 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 		chooser.addProbability(toTransition, probability);
 	}
 
+	/**
+	 * 如果没有最后一次变迁，随机选择一个变迁t，最为第一次变迁
+	 * 从t到t1，t2,t3的概率分别为0.2,0.3,0.5,总和必须为1,
+	 * 根据概率，选择t之后的变迁，最大可能性是t3
+	 */
 	@Override
 	public T chooseNextTransition(List<T> enabledTransitions) throws InconsistencyException {
-		if(!flowProbabilities.containsKey(net.getLastFiredTransition()))
-			return super.chooseNextTransition(enabledTransitions);
+		if(!flowProbabilities.containsKey(net.getLastFiredTransition()))  
+			return super.chooseNextTransition(enabledTransitions); // 随机选择一个变迁作为第一个变迁
 		if(!isValid())
 			throw new InconsistencyException("At least one StochasticChooser is not valid.");
 		Validate.notNull(enabledTransitions);
@@ -85,6 +101,7 @@ public class StochasticPNTraverser<T extends AbstractTransition<?,?>> extends Ra
 		
 		T nextTransition = null;
 		try {
+			// 根据概率选择最后一次变迁的后一次变迁
 			nextTransition = flowProbabilities.get(net.getLastFiredTransition()).getNextValue();
 		} catch (ValueGenerationException e) {
 			// Cannot happen, since all choosers are valid.
