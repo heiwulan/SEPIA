@@ -25,6 +25,9 @@ public class RandomPNTraverser<T extends AbstractTransition<?,?>> extends PNTrav
 		super(net);
 	}
 
+	/**
+	 * 在使能变迁集合中，随机选一个变迁
+	 */
 	@Override
 	public T chooseNextTransition(List<T> enabledTransitions) throws InconsistencyException {
 		if(!isValid())
@@ -41,6 +44,7 @@ public class RandomPNTraverser<T extends AbstractTransition<?,?>> extends PNTrav
 		return randomChooser.chooseValue(enabledTransitions);
 	}
 
+	/** 是否有效 */
 	@Override
 	public boolean isValid() {
 		return randomChooser.isValid();
