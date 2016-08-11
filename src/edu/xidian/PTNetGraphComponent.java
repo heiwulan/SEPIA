@@ -39,7 +39,10 @@ public class PTNetGraphComponent  extends JPanel {
 	
 	/** vertex of Transition style */
 	private static final String TransitionStyle = "TransitionStyle"; 
-			
+	
+	/** width,height of vertex, default 30 */
+	private int width = 30, height = 30;
+		
 	/**
 	 * key: vertex(Place/Transition) name, value: mxCell对象
 	 * for create edge from vertices
@@ -182,6 +185,37 @@ public class PTNetGraphComponent  extends JPanel {
 		stylesheet.putCellStyle(TransitionStyle, style);
 	}
 	
+	
+	/**
+	 * get width of vertex,{@link #width}
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * set width of vertex,{@link #width}
+	 * @param width
+	 */
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	/**
+	 * get height of vertex,{@link #width}
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * set height of vertex,{@link #width}
+	 * @param height
+	 */
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 	public static void main(String[] args) {
 		PTNet ptnet = CreatePetriNet.createPTnet1();
 		PTNetGraphComponent component = new PTNetGraphComponent(ptnet);
