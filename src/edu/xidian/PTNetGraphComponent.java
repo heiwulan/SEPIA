@@ -41,7 +41,7 @@ public class PTNetGraphComponent  extends JPanel {
 	private static final String TransitionStyle = "TransitionStyle"; 
 	
 	/** width,height of vertex, default 30 */
-	private int width = 30, height = 30;
+	private int vertexWidth = 20, vertexHeight = 20;
 		
 	/**
 	 * key: vertex(Place/Transition) name, value: mxCell对象
@@ -189,31 +189,31 @@ public class PTNetGraphComponent  extends JPanel {
 	/**
 	 * get width of vertex,{@link #width}
 	 */
-	public int getWidth() {
-		return width;
+	public int getVertexWidth() {
+		return this.vertexWidth;
 	}
 
 	/**
 	 * set width of vertex,{@link #width}
 	 * @param width
 	 */
-	public void setWidth(int width) {
-		this.width = width;
+	public void setVertexWidth(int width) {
+		this.vertexWidth = width;
 	}
 
 	/**
 	 * get height of vertex,{@link #width}
 	 */
-	public int getHeight() {
-		return height;
+	public int getVertexHeight() {
+		return this.vertexHeight;
 	}
 
 	/**
 	 * set height of vertex,{@link #width}
 	 * @param height
 	 */
-	public void setHeight(int height) {
-		this.height = height;
+	public void setVertexHeight(int height) {
+		this.vertexHeight = height;
 	}
 
 	public static void main(String[] args) {
