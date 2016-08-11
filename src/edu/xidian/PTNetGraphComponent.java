@@ -69,8 +69,9 @@ public class PTNetGraphComponent  extends JPanel {
 	protected void setupVisualGraph() throws Exception {	
 		visualGraph = new mxGraph();
 		Object parent = visualGraph.getDefaultParent();
-		createPlaceStyle();
-		createTransitionStyle();
+		createPlaceStyle();       // vertex of Place style
+		createTransitionStyle();  // vertex of Transition style
+		setCellsAttribute();      // 设置cells属性
 
 		visualGraph.getModel().beginUpdate();
 		try{
@@ -183,6 +184,22 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
 		style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
 		stylesheet.putCellStyle(TransitionStyle, style);
+	}
+	
+	/**
+	 * 设置图形的一些属性，比如，不能删除cells; 不能编辑cells; 拖动边时，保证两端顶点是连接状态,不能脱接; cells是可以移动的，不能改变cells的大小;
+	 * 不会出现悬挂边; Label是可以拖动的
+	 */
+	private void setCellsAttribute() {
+		visualGraph.setCellsDeletable(false);
+		visualGraph.setCellsEditable(false);
+		visualGraph.setCellsDisconnectable(false);  // 不会拖动边，而使两端顶点不连接
+		visualGraph.setCellsMovable(true);
+		//visualGraph.setCellsLocked(true);
+		visualGraph.setCellsResizable(false);
+		visualGraph.setAllowDanglingEdges(false); // 设置true: 鼠标掠过，按住左键，可以拖出一条悬挂边;	
+		visualGraph.setVertexLabelsMovable(true); // Label是可以拖动的
+		visualGraph.setEdgeLabelsMovable(true);
 	}
 	
 	
