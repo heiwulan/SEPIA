@@ -13,6 +13,8 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.shape.mxTokenToShape;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
@@ -102,16 +104,16 @@ public class PTNetGraphComponent  extends JPanel {
 			visualGraph.getModel().endUpdate();
 		}
 		
-		
+		// 布局
 		mxHierarchicalLayout layout = new mxHierarchicalLayout(visualGraph);
-		//mxCompactTreeLayout layout = new mxCompactTreeLayout(visualGraph);
-		//mxFastOrganicLayout layout = new mxFastOrganicLayout(visualGraph);
-		//mxOrganicLayout layout = new mxOrganicLayout(visualGraph);
-		
-		//layout.setDisableEdgeStyle(false);
-		//layout.setDisableEdgeStyle(true); // ok
-		//layout.execute(visualGraph.getDefaultParent());
+		// cell的边界是否包含Label，false，利于对其关系仅与几何形状有关，比较整齐。但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。
+		layout.setUseBoundingBox(false);
+		// 计算
 		layout.execute(parent);
+		
+		// 保证视图之外的Label能看见
+		mxRectangle rec = visualGraph.getGraphBounds();
+		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY()));
 	}
 	
 	/**
@@ -168,7 +170,7 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_TOKEN_ELLIPSE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
 		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
-		style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
 		stylesheet.putCellStyle(PlaceStyle, style);
 	}
 	
@@ -182,7 +184,7 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
 		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
-		style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
 		stylesheet.putCellStyle(TransitionStyle, style);
 	}
 	
@@ -241,7 +243,7 @@ public class PTNetGraphComponent  extends JPanel {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 	    new DisplayFrame(component,true);
 	}
 
