@@ -170,6 +170,7 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_TOKEN_ELLIPSE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
 		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+		style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
 		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
 		stylesheet.putCellStyle(PlaceStyle, style);
 	}
@@ -184,6 +185,7 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
 		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+		style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
 		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
 		stylesheet.putCellStyle(TransitionStyle, style);
 	}
