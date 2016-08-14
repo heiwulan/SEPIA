@@ -6,7 +6,9 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxCell;
@@ -94,9 +96,9 @@ public class PTNetGraphComponent  extends JPanel {
 				mxCell insertedEdge = (mxCell) visualGraph.insertEdge(parent, id, edge, vertices.get(source),vertices.get(target));
 				Object[] cells = new Object[1];
 				cells[0] = insertedEdge;
-				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_BACKGROUNDCOLOR, "#ffffff", cells);
-				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP,cells);
-				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER,cells);
+//				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_BACKGROUNDCOLOR, "#ffffff", cells);
+//				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP,cells); // 无效
+//				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER,cells); // 无效
 		    }
 	
 		}
@@ -238,7 +240,7 @@ public class PTNetGraphComponent  extends JPanel {
 	public void setVertexHeight(int height) {
 		this.vertexHeight = height;
 	}
-
+	
 	public static void main(String[] args) {
 		PTNet ptnet = CreatePetriNet.createPTnet1();
 		PTNetGraphComponent component = new PTNetGraphComponent(ptnet);
