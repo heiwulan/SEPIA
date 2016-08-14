@@ -108,6 +108,8 @@ public class PTNetGraphComponent  extends JPanel {
 		mxHierarchicalLayout layout = new mxHierarchicalLayout(visualGraph);
 		// cell的边界是否包含Label，false，利于对其关系仅与几何形状有关，比较整齐。但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。
 		layout.setUseBoundingBox(false);
+		// 缺省布局方向
+		layout.setOrientation(SwingConstants.NORTH);
 		// 计算
 		layout.execute(parent);
 		
