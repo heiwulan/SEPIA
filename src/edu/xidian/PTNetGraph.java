@@ -21,8 +21,6 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import de.uni.freiburg.iig.telematik.sepia.petrinet.pt.PTNet;
 
 /**
@@ -35,11 +33,17 @@ public class PTNetGraph implements ActionListener, ItemListener {
     /** PTNet Graph */
     private PTNetGraphComponent ptnetGraph = null;
     
-    /** 图的朝向 */
+    /** 图的朝向,如果改变，请注意在createMenuBar()中，修改快捷键，现在是：N,W,S,E */
     private String[] orientationStr = {"NORTH","WEST","SOUTH","EAST"};
     
-    /** 表示图的朝向的单选按钮，key: orientationStr */
-    private Map<String,JRadioButtonMenuItem> orientationRadioBtn = new HashMap<>();
+    /** 表示PTnet graph的朝向的单选按钮，key: orientationStr */
+    private Map<String,JRadioButtonMenuItem> netOrientationRadioBtn = new HashMap<>();
+    
+    /** 表示Marking graph的朝向的单选按钮，key: orientationStr */
+    private Map<String,JRadioButtonMenuItem> markingOrientationRadioBtn = new HashMap<>();
+    
+    /** 表示选择PTNet graph或Making graph,或二者皆选。 Key: "PTNet","Marking" */
+    private Map<String,JCheckBoxMenuItem> PTNetOrMarkingGraph = new HashMap<>();
    
     public PTNetGraph(PTNetGraphComponent ptnetGraph) {
 		this.ptnetGraph = ptnetGraph;
@@ -61,54 +65,110 @@ public class PTNetGraph implements ActionListener, ItemListener {
         menuBar.add(menu);
 
         // JMenuItems for first menu
-        menuItem = new JMenuItem("PTNet");
-        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem = new JMenuItem("Open");
+        menuItem.setMnemonic(KeyEvent.VK_O);
         menuItem.addActionListener(this);
         menu.add(menuItem);
         
-        menuItem = new JMenuItem("MrkingGraph");
-        menuItem.setMnemonic(KeyEvent.VK_M);
+        menu.addSeparator();
+        
+        //a group of check box menu items, 表示选择PTNet graph或Making graph,或二者皆选
+        cbMenuItem = new JCheckBoxMenuItem("PTNet");
+        cbMenuItem.setMnemonic(KeyEvent.VK_C);
+        cbMenuItem.setSelected(true);
+        cbMenuItem.addItemListener(this);
+        menu.add(cbMenuItem);
+        PTNetOrMarkingGraph.put("PTNet", cbMenuItem);
+
+        cbMenuItem = new JCheckBoxMenuItem("Marking");
+        cbMenuItem.setMnemonic(KeyEvent.VK_H);
+        cbMenuItem.setSelected(true);
+        cbMenuItem.addItemListener(this);
+        menu.add(cbMenuItem);
+        PTNetOrMarkingGraph.put("Marking", cbMenuItem);
+        
+        menu.addSeparator();
+        
+        menuItem = new JMenuItem("Exit");
+        menuItem.setMnemonic(KeyEvent.VK_E);
         menuItem.addActionListener(this);
         menu.add(menuItem);
 
 
+        // Build the second menu， "PTNet"
+        menu = new JMenu("PTNet");
+        menu.setMnemonic(KeyEvent.VK_G);
+        menuBar.add(menu);
+        
         //a group of radio button menu items
-        menu.addSeparator();
         ButtonGroup group = new ButtonGroup();
         for (int i = 0; i < 4; i++) {
         	rbMenuItem = new JRadioButtonMenuItem(orientationStr[i]);
             group.add(rbMenuItem);
             rbMenuItem.addActionListener(this);
             menu.add(rbMenuItem);
-            orientationRadioBtn.put(orientationStr[i],rbMenuItem);
+            netOrientationRadioBtn.put(orientationStr[i],rbMenuItem);
         }
         // default selected
-        orientationRadioBtn.get("NORTH").setSelected(true);
+        netOrientationRadioBtn.get("NORTH").setSelected(true);
         // Sets the keyboard mnemonic 
-        orientationRadioBtn.get("NORTH").setMnemonic(KeyEvent.VK_N);
-        orientationRadioBtn.get("WEST").setMnemonic(KeyEvent.VK_W);
-        orientationRadioBtn.get("SOUTH").setMnemonic(KeyEvent.VK_S);
-        orientationRadioBtn.get("EAST").setMnemonic(KeyEvent.VK_E);
+        netOrientationRadioBtn.get("NORTH").setMnemonic(KeyEvent.VK_N);
+        netOrientationRadioBtn.get("WEST").setMnemonic(KeyEvent.VK_W);
+        netOrientationRadioBtn.get("SOUTH").setMnemonic(KeyEvent.VK_S);
+        netOrientationRadioBtn.get("EAST").setMnemonic(KeyEvent.VK_E);
         
-        //a group of check box menu items
-        menu.addSeparator();
-        cbMenuItem = new JCheckBoxMenuItem("PTNet");
-        cbMenuItem.setMnemonic(KeyEvent.VK_C);
-        cbMenuItem.addItemListener(this);
-        menu.add(cbMenuItem);
-
-        cbMenuItem = new JCheckBoxMenuItem("MarkingGraph");
-        cbMenuItem.setMnemonic(KeyEvent.VK_H);
-        cbMenuItem.addItemListener(this);
-        menu.add(cbMenuItem);
+        // Build the third menu， "Marking"
+        menu = new JMenu("Marking");
+        menu.setMnemonic(KeyEvent.VK_G);
+        menuBar.add(menu);
+        
+        //a group of radio button menu items
+        ButtonGroup group1 = new ButtonGroup();
+        for (int i = 0; i < 4; i++) {
+        	rbMenuItem = new JRadioButtonMenuItem(orientationStr[i]);
+            group1.add(rbMenuItem);
+            rbMenuItem.addActionListener(this);
+            menu.add(rbMenuItem);
+            markingOrientationRadioBtn.put(orientationStr[i],rbMenuItem);
+        }
+        // default selected
+        markingOrientationRadioBtn.get("NORTH").setSelected(true);
+        // Sets the keyboard mnemonic 
+        markingOrientationRadioBtn.get("NORTH").setMnemonic(KeyEvent.VK_N);
+        markingOrientationRadioBtn.get("WEST").setMnemonic(KeyEvent.VK_W);
+        markingOrientationRadioBtn.get("SOUTH").setMnemonic(KeyEvent.VK_S);
+        markingOrientationRadioBtn.get("EAST").setMnemonic(KeyEvent.VK_E);
         
         return menuBar;
     }
 
     public void actionPerformed(ActionEvent e) {
         JMenuItem source = (JMenuItem)(e.getSource()); 
+        // 单选按钮,图的朝向
+        if (source instanceof JRadioButtonMenuItem) {
+        	String selected = null;
+        	for (Map.Entry<String, JRadioButtonMenuItem> entry : netOrientationRadioBtn.entrySet()) {
+        	    if (source == entry.getValue()) {
+        	    	selected = entry.getKey();
+        	    	System.out.println("PTNet selected:" + selected);
+        	    	break;
+        	    }
+        	}
+        	if (selected == null) {
+		    	for (Map.Entry<String, JRadioButtonMenuItem> entry : markingOrientationRadioBtn.entrySet()) {
+		    	    if (source == entry.getValue()) {
+		    	    	selected = entry.getKey();
+		    	    	System.out.println("Marking selected:" + selected);
+		    	    	break;
+		    	    }
+		    	}
+        	}
+        }
         
-        System.out.println(source instanceof JRadioButtonMenuItem);
+        // 菜单项,Open,Exit
+        if (source instanceof JMenuItem) {
+        	System.out.println("Menu item selected:" + source.getText());
+        }
         
         String s = "Action event detected."
                    + newline
@@ -120,6 +180,16 @@ public class PTNetGraph implements ActionListener, ItemListener {
 
     public void itemStateChanged(ItemEvent e) {
         JMenuItem source = (JMenuItem)(e.getSource());
+        
+        // 复选框选择，PTNet or Marking graph
+        for (Map.Entry<String, JCheckBoxMenuItem> entry : PTNetOrMarkingGraph.entrySet()) {
+    	    if (source == entry.getValue()) {
+    	        boolean selected = (e.getStateChange() == ItemEvent.SELECTED);
+    	    	System.out.println("selected:" + selected + "," + entry.getKey());
+    	    	break;
+    	    }
+    	}
+        
         String s = "Item event detected."
                    + newline
                    + " (an instance of " + getClassName(source) + ")"
