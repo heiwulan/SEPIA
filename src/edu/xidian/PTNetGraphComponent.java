@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -51,7 +50,12 @@ public class PTNetGraphComponent  extends JPanel {
 	 * key: vertex(Place/Transition) name, value: mxCell对象
 	 * for create edge from vertices
 	 */
-	protected Map<String, mxCell> vertices = new HashMap<String, mxCell>(); 
+	private Map<String, mxCell> vertices = new HashMap<String, mxCell>(); 
+	
+	/** 布局 */
+	private mxHierarchicalLayout layout;
+	
+	private Object parent;
 	
 	public PTNetGraphComponent(PTNet petriNet) throws ParameterException  {
 		Validate.notNull(petriNet);
@@ -72,7 +76,7 @@ public class PTNetGraphComponent  extends JPanel {
 	 */
 	protected void setupVisualGraph() throws Exception {	
 		visualGraph = new mxGraph();
-		Object parent = visualGraph.getDefaultParent();
+		parent = visualGraph.getDefaultParent();
 		createPlaceStyle();       // vertex of Place style
 		createTransitionStyle();  // vertex of Transition style
 		setCellsAttribute();      // 设置cells属性
@@ -107,7 +111,7 @@ public class PTNetGraphComponent  extends JPanel {
 		}
 		
 		// 布局
-		mxHierarchicalLayout layout = new mxHierarchicalLayout(visualGraph);
+		layout = new mxHierarchicalLayout(visualGraph);
 		// cell的边界是否包含Label，false，利于对其关系仅与几何形状有关，比较整齐。但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。
 		layout.setUseBoundingBox(false);
 		// 缺省布局方向
@@ -117,6 +121,7 @@ public class PTNetGraphComponent  extends JPanel {
 		
 		// 保证视图之外的Label能看见
 		mxRectangle rec = visualGraph.getGraphBounds();
+		System.out.println("setupVisualGraph:"+rec);
 		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY()));
 	}
 	
@@ -210,6 +215,21 @@ public class PTNetGraphComponent  extends JPanel {
 		visualGraph.setEdgeLabelsMovable(true);
 	}
 	
+	/** 设置布局方向
+	 * @param orientation: SwingConstants.NORTH，SOUTH，WEST，EAST
+	 */
+	public void setOrientation(int orientation) {
+		layout.setOrientation(orientation);
+		// 计算
+		layout.execute(parent);
+		// 根据朝向调整
+		System.out.println("oooo=" + orientation);
+		
+		// 保证视图之外的Label能看见
+		mxRectangle rec = visualGraph.getGraphBounds();
+		System.out.println("setOrientation:"+rec);
+		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY()));
+	}
 	
 	/**
 	 * get width of vertex,{@link #width}
