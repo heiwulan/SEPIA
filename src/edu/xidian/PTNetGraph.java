@@ -151,6 +151,16 @@ public class PTNetGraph implements ActionListener, ItemListener {
         	    if (source == entry.getValue()) {
         	    	selected = entry.getKey();
         	    	System.out.println("PTNet selected:" + selected);
+        	    	int orientation = SwingConstants.NORTH;
+        	    	if (selected == "WEST") orientation = SwingConstants.WEST;
+        	    	else if (selected == "EAST") orientation = SwingConstants.EAST;
+        	    	else if (selected == "EAST") orientation = SwingConstants.SOUTH;
+        	    	ptnetGraph.setOrientation(orientation);
+        	    	//ptnetGraph.invalidate();
+        	    	//ptnetGraph.validate();
+        	    	//contentPane.repaint();
+        	    	//contentPane.invalidate();
+        	    	
         	    	break;
         	    }
         	}
