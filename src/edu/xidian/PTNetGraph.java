@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import de.uni.freiburg.iig.telematik.sepia.petrinet.pt.PTNet;
 
@@ -154,12 +155,8 @@ public class PTNetGraph implements ActionListener, ItemListener {
         	    	int orientation = SwingConstants.NORTH;
         	    	if (selected == "WEST") orientation = SwingConstants.WEST;
         	    	else if (selected == "EAST") orientation = SwingConstants.EAST;
-        	    	else if (selected == "EAST") orientation = SwingConstants.SOUTH;
-        	    	ptnetGraph.setOrientation(orientation);
-        	    	//ptnetGraph.invalidate();
-        	    	//ptnetGraph.validate();
-        	    	//contentPane.repaint();
-        	    	//contentPane.invalidate();
+        	    	else if (selected == "SOUTH") orientation = SwingConstants.SOUTH;
+        	    	ptnetGraph.setOrientation(orientation); // 改变图的朝向
         	    	
         	    	break;
         	    }
@@ -175,7 +172,7 @@ public class PTNetGraph implements ActionListener, ItemListener {
         	}
         }
         
-        // 菜单项,Open,Exit
+        // 菜单项,Open,Exit, 如果是上述JRadioButtonMenuItem实例的菜单项，也符合本条件，因此不必用instanceof区分菜单项。
         if (source instanceof JMenuItem) {
         	System.out.println("Menu item selected:" + source.getText());
         }
