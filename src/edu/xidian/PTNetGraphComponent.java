@@ -52,7 +52,7 @@ public class PTNetGraphComponent  extends JPanel {
 	 */
 	private Map<String, mxCell> vertices = new HashMap<String, mxCell>(); 
 	
-	/** 布局 */
+	/** Graph布局 */
 	private mxHierarchicalLayout layout;
 	
 	private Object parent;
@@ -110,19 +110,19 @@ public class PTNetGraphComponent  extends JPanel {
 			visualGraph.getModel().endUpdate();
 		}
 		
-		// 布局
+		// Graph布局
 		layout = new mxHierarchicalLayout(visualGraph);
-		// cell的边界是否包含Label，false，利于对其关系仅与几何形状有关，比较整齐。但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。
+		// cell的边界是否包含Label，false，利于对其关系仅与几何形状有关，比较整齐。
+		// 但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。由下面的平移图形来弥补
 		layout.setUseBoundingBox(false);
 		// 缺省布局方向
 		layout.setOrientation(SwingConstants.NORTH);
 		// 计算
 		layout.execute(parent);
 		
-		// 保证视图之外的Label能看见
-		mxRectangle rec = visualGraph.getGraphBounds();
-		System.out.println("setupVisualGraph:"+rec);
-		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY()));
+		// 保证视图之外的Label能看见，平移图形
+		mxRectangle rec = visualGraph.getGraphBounds();  // 包含图形及其Label的边界
+		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY())); // 还原回来，设置为point(0,0)即可
 	}
 	
 	/**
@@ -215,20 +215,20 @@ public class PTNetGraphComponent  extends JPanel {
 		visualGraph.setEdgeLabelsMovable(true);
 	}
 	
-	/** 设置布局方向
+	/** 设置Graph布局方向（朝向，东、西、南、北），缺省：北
 	 * @param orientation: SwingConstants.NORTH，SOUTH，WEST，EAST
 	 */
 	public void setOrientation(int orientation) {
+		// 首先，把在setupVisualGraph()或上一次setOrientation（）中平移图形的坐标还原过来，即设置translate为point(0,0)
+		visualGraph.getView().setTranslate(new mxPoint(0, 0));
+		
 		layout.setOrientation(orientation);
 		// 计算
 		layout.execute(parent);
-		// 根据朝向调整
-		System.out.println("oooo=" + orientation);
 		
-		// 保证视图之外的Label能看见
-		mxRectangle rec = visualGraph.getGraphBounds();
-		System.out.println("setOrientation:"+rec);
-		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY()));
+		// 保证视图之外的Label能看见,平移图形
+		mxRectangle rec = visualGraph.getGraphBounds(); // 包含图形及其Label的边界
+		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY())); // 还原回来，设置为point(0,0)即可
 	}
 	
 	/**
