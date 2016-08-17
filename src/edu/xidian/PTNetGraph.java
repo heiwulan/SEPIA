@@ -229,9 +229,9 @@ public class PTNetGraph implements ActionListener, ItemListener {
 		// Add the ptnetGraph to the content pane.
 		JScrollPane scroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setViewportView(ptnetGraph);
-//		contentPane.add(scroll, BorderLayout.CENTER);
+		contentPane.add(scroll, BorderLayout.CENTER);  // 这一部分区域大小是动态的，随着窗口大小或内容大小动态改变，其他部分非动态
 //		contentPane.add(scroll, BorderLayout.PAGE_START);
-		contentPane.add(scroll, BorderLayout.LINE_START);
+//		contentPane.add(scroll, BorderLayout.LINE_START);
 		
 		// add the marking graph
 		//JButton button = new JButton("Line end Button (LINE_END)");
