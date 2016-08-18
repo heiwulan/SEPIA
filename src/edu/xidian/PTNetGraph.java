@@ -31,6 +31,7 @@ public class PTNetGraph implements ActionListener, ItemListener {
 	/** 输出状态信息 */
     private JTextArea output;
     private static final String newline = "\n";
+    
     /** PTNet Graph */
     private PTNetGraphComponent ptnetGraph = null;
     
@@ -45,6 +46,12 @@ public class PTNetGraph implements ActionListener, ItemListener {
     
     /** 表示选择PTNet graph或Making graph,或二者皆选。 Key: "PTNet","Marking" */
     private Map<String,JCheckBoxMenuItem> PTNetOrMarkingGraph = new HashMap<>();
+    
+    /** vertex label position,如果改变，请注意在createMenuBar()中，修改快捷键，现在是：L,R,T,B */
+    private String[] labelPositionStr = {"Left","Right","Top","Bottom"};
+    
+    /** 表示vertex label position 菜单项，key: SwingConstants.LEFT,RIGHT,TOP,BOTTOM */
+    private Map<String,JMenuItem> labelPositionItem = new HashMap<>();
    
     public PTNetGraph(PTNetGraphComponent ptnetGraph) {
 		this.ptnetGraph = ptnetGraph;
@@ -98,7 +105,7 @@ public class PTNetGraph implements ActionListener, ItemListener {
 
         // Build the second menu， "PTNet"
         menu = new JMenu("PTNet");
-        menu.setMnemonic(KeyEvent.VK_G);
+        menu.setMnemonic(KeyEvent.VK_P);
         menuBar.add(menu);
         
         //a group of radio button menu items
@@ -120,12 +127,12 @@ public class PTNetGraph implements ActionListener, ItemListener {
         
         // Build the third menu， "Marking"
         menu = new JMenu("Marking");
-        menu.setMnemonic(KeyEvent.VK_G);
+        menu.setMnemonic(KeyEvent.VK_M);
         menuBar.add(menu);
         
         //a group of radio button menu items
         ButtonGroup group1 = new ButtonGroup();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < orientationStr.length; i++) {
         	rbMenuItem = new JRadioButtonMenuItem(orientationStr[i]);
             group1.add(rbMenuItem);
             rbMenuItem.addActionListener(this);
@@ -139,6 +146,25 @@ public class PTNetGraph implements ActionListener, ItemListener {
         markingOrientationRadioBtn.get("WEST").setMnemonic(KeyEvent.VK_W);
         markingOrientationRadioBtn.get("SOUTH").setMnemonic(KeyEvent.VK_S);
         markingOrientationRadioBtn.get("EAST").setMnemonic(KeyEvent.VK_E);
+        
+        // Build the forth menu， "Label"
+        menu = new JMenu("Label");
+        menu.setMnemonic(KeyEvent.VK_L);
+        menuBar.add(menu);
+        
+        // JMenuItems for forth menu
+        for (int i = 0; i < labelPositionStr.length; i++) {
+        	menuItem = new JMenuItem(labelPositionStr[i]);
+        	menuItem.addActionListener(this);
+        	menu.add(menuItem);
+        	labelPositionItem.put(labelPositionStr[i], menuItem);
+        }
+     
+        // Sets the keyboard mnemonic 
+        labelPositionItem.get("Left").setMnemonic(KeyEvent.VK_L);
+        labelPositionItem.get("Right").setMnemonic(KeyEvent.VK_R);
+        labelPositionItem.get("Top").setMnemonic(KeyEvent.VK_T);
+        labelPositionItem.get("Bottom").setMnemonic(KeyEvent.VK_B);
         
         return menuBar;
     }
@@ -175,6 +201,18 @@ public class PTNetGraph implements ActionListener, ItemListener {
         // 菜单项,Open,Exit, 如果是上述JRadioButtonMenuItem实例的菜单项，也符合本条件，因此不必用instanceof区分菜单项。
         if (source instanceof JMenuItem) {
         	System.out.println("Menu item selected:" + source.getText());
+        	for (Map.Entry<String, JMenuItem> entry : labelPositionItem.entrySet()) {
+        		if (source == entry.getValue()) {
+        			if (entry.getKey() == "Left")
+        			    ptnetGraph.changeLabelPosition(SwingConstants.LEFT);
+        			else if (entry.getKey() == "Right")
+    			        ptnetGraph.changeLabelPosition(SwingConstants.RIGHT);
+        			else if (entry.getKey() == "Top")
+        				ptnetGraph.changeLabelPosition(SwingConstants.TOP);
+        			else if (entry.getKey() == "Bottom")
+        				ptnetGraph.changeLabelPosition(SwingConstants.BOTTOM);
+        		}
+        	}
         }
         
         String s = "Action event detected."
