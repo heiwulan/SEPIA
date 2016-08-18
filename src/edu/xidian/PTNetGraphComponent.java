@@ -57,6 +57,9 @@ public class PTNetGraphComponent  extends JPanel {
 	
 	private Object parent;
 	
+	/** Graph布局朝向 */
+	private int layoutOrientation = SwingConstants.NORTH;	 
+	
 	public PTNetGraphComponent(PTNet petriNet) throws ParameterException  {
 		Validate.notNull(petriNet);
 		this.petriNet = petriNet;
@@ -116,7 +119,7 @@ public class PTNetGraphComponent  extends JPanel {
 		// 但是，边界处的label有可能看不见，如，label在vertex的左边时，最左边的label就可能看不见。由下面的平移图形来弥补
 		layout.setUseBoundingBox(false);
 		// 缺省布局方向
-		layout.setOrientation(SwingConstants.NORTH);
+		layout.setOrientation(layoutOrientation);
 		// 计算
 		layout.execute(parent);
 		
@@ -178,9 +181,15 @@ public class PTNetGraphComponent  extends JPanel {
 		Hashtable<String, Object> style = new Hashtable<String, Object>();
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_TOKEN_ELLIPSE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
-		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
-		style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
-		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		if (layoutOrientation == SwingConstants.NORTH || layoutOrientation == SwingConstants.SOUTH) {
+			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
+		}
+		else {
+			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_RIGHT, 0); // in pixels, added to the right side of a label in a vertex
+			style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		}
 		stylesheet.putCellStyle(PlaceStyle, style);
 	}
 	
@@ -193,9 +202,16 @@ public class PTNetGraphComponent  extends JPanel {
 		Hashtable<String, Object> style = new Hashtable<String, Object>();
 		style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
-		style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
-		style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
-		//style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		if (layoutOrientation == SwingConstants.NORTH || layoutOrientation == SwingConstants.SOUTH) {
+			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
+			style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the vertical label position of vertices
+		}
+		else {
+			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_RIGHT, 0); // in pixels, added to the right side of a label in a vertex
+			style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+		}
 		stylesheet.putCellStyle(TransitionStyle, style);
 	}
 	
@@ -215,10 +231,39 @@ public class PTNetGraphComponent  extends JPanel {
 		visualGraph.setEdgeLabelsMovable(true);
 	}
 	
+	/**
+	 * 根据Graph朝向，调整vertex label的显示位置
+	 * @param orientation
+	 */
+	private void labelPosition(int orientation) {
+		int i = 0;
+		Object[] cells = new Object[petriNet.getNodes().size()];
+		for(AbstractPNNode<PTFlowRelation> node: petriNet.getNodes()) {
+			String vertexName = node.getName();    
+		    cells[i] = vertices.get(vertexName);
+		    i++;
+		}
+		if (layoutOrientation == SwingConstants.NORTH || layoutOrientation == SwingConstants.SOUTH) {
+			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT, cells); //the horizontal label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "-10", cells); // in pixels, added to the right side of a label in a vertex
+			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the vertical label position of vertices
+		}
+		else {
+			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the horizontal label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0", cells); // in pixels, added to the right side of a label in a vertex
+			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP, cells); //the vertical label position of vertices
+		}
+	}
+	
 	/** 设置Graph布局方向（朝向，东、西、南、北），缺省：北
 	 * @param orientation: SwingConstants.NORTH，SOUTH，WEST，EAST
 	 */
 	public void setOrientation(int orientation) {
+		this.layoutOrientation = orientation;
+		
+		// 调整vertex label的显示位置
+		labelPosition(orientation);
+				
 		// 首先，把在setupVisualGraph()或上一次setOrientation（）中平移图形的坐标还原过来，即设置translate为point(0,0)
 		visualGraph.getView().setTranslate(new mxPoint(0, 0));
 		
