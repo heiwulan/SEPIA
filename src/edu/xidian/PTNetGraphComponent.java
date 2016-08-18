@@ -247,11 +247,13 @@ public class PTNetGraphComponent  extends JPanel {
 			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT, cells); //the horizontal label position of vertices
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "-10", cells); // in pixels, added to the right side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the vertical label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "0" , cells); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 		else {
 			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the horizontal label position of vertices
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0", cells); // in pixels, added to the right side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP, cells); //the vertical label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "-10" , cells); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 	}
 	
