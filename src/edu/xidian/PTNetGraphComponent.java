@@ -279,14 +279,14 @@ public class PTNetGraphComponent  extends JPanel {
 	}
 	
 	/**
-	 * get width of vertex,{@link #width}
+	 * get width of vertex,{@link #vertexWidth}
 	 */
 	public int getVertexWidth() {
 		return this.vertexWidth;
 	}
 
 	/**
-	 * set width of vertex,{@link #width}
+	 * set width of vertex,{@link #vertexWidth}
 	 * @param width
 	 */
 	public void setVertexWidth(int width) {
@@ -294,14 +294,14 @@ public class PTNetGraphComponent  extends JPanel {
 	}
 
 	/**
-	 * get height of vertex,{@link #width}
+	 * get height of vertex,{@link #vertexWidth}
 	 */
 	public int getVertexHeight() {
 		return this.vertexHeight;
 	}
 
 	/**
-	 * set height of vertex,{@link #width}
+	 * set height of vertex,{@link #vertexWidth}
 	 * @param height
 	 */
 	public void setVertexHeight(int height) {
