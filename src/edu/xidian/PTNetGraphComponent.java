@@ -299,6 +299,16 @@ public class PTNetGraphComponent  extends JPanel {
 		// 首先，还原别的地方引起的平移图形，即设置translate为point(0,0)
 	    visualGraph.getView().setTranslate(new mxPoint(0, 0));
 	    
+	    // 如果人为移动过该顶点的label（鼠标选取label,拖动）,恢复其offset。 否则，由于offset的存在，使得本函数中改变的label相对于顶点的相对位置，表现不尽人意
+	    Object[] vertices = visualGraph.getSelectionCells();
+	    for (Object vertex: vertices) {
+		    if (((mxCell)vertex).isVertex()) {
+		    	mxGeometry geo = ((mxCell)vertex).getGeometry();
+		    	if (geo.getOffset() != null) { // 该顶点的label被人为移动过（鼠标选取label,拖动）
+		    		geo.setOffset(null);  // 恢复其offset
+		    	}
+		    }
+	    }
 	    
 		switch(position) {
 			case SwingConstants.LEFT:
@@ -336,7 +346,6 @@ public class PTNetGraphComponent  extends JPanel {
 		}
 		// 保证视图之外的Label能看见,平移图形
 		mxRectangle rec = visualGraph.getGraphBounds(); // 包含图形及其Label的边界
-		System.out.println("After:"+rec);
 		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY())); // 还原回来，设置为point(0,0)即可
 	}
 	
