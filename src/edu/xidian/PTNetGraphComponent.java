@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.shape.mxTokenToShape;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
@@ -204,13 +205,19 @@ public class PTNetGraphComponent  extends JPanel {
 		style.put(mxConstants.STYLE_FILLCOLOR, "#C3D9FF");
 		if (layoutOrientation == SwingConstants.NORTH || layoutOrientation == SwingConstants.SOUTH) {
 			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_LEFT, 0); // in pixels, added to the left side of a label in a vertex
 			style.put(mxConstants.STYLE_SPACING_RIGHT, -10); // in pixels, added to the right side of a label in a vertex
 			style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the vertical label position of vertices
+			style.put(mxConstants.STYLE_SPACING_TOP, 0); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+			style.put(mxConstants.STYLE_SPACING_BOTTOM, 0); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 		else {
 			style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the horizontal label position of vertices
+			style.put(mxConstants.STYLE_SPACING_LEFT, 0); // in pixels, added to the left side of a label in a vertex
 			style.put(mxConstants.STYLE_SPACING_RIGHT, 0); // in pixels, added to the right side of a label in a vertex
 			style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+			style.put(mxConstants.STYLE_SPACING_TOP, 0); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+			style.put(mxConstants.STYLE_SPACING_BOTTOM, -10); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 		stylesheet.putCellStyle(TransitionStyle, style);
 	}
@@ -245,14 +252,18 @@ public class PTNetGraphComponent  extends JPanel {
 		}
 		if (layoutOrientation == SwingConstants.NORTH || layoutOrientation == SwingConstants.SOUTH) {
 			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT, cells); //the horizontal label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "0", cells); // in pixels, added to the left side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "-10", cells); // in pixels, added to the right side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the vertical label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "0" , cells); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "0" , cells); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 		else {
 			visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER, cells); //the horizontal label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "0", cells); // in pixels, added to the left side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0", cells); // in pixels, added to the right side of a label in a vertex
 			visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP, cells); //the vertical label position of vertices
+			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "0" , cells); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
 			visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "-10" , cells); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
 		}
 	}
@@ -277,6 +288,58 @@ public class PTNetGraphComponent  extends JPanel {
 		mxRectangle rec = visualGraph.getGraphBounds(); // 包含图形及其Label的边界
 		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY())); // 还原回来，设置为point(0,0)即可
 	}
+	
+	
+	/**
+	 * 改变选中vertex的label的显示位置
+	 * @param position SwingConstants.LEFT,SwingConstants.RIGHT，SwingConstants.TOP，SwingConstants.BOTTOM
+	 */
+	public void changeLabelPosition(int position) {
+		
+		// 首先，还原别的地方引起的平移图形，即设置translate为point(0,0)
+	    visualGraph.getView().setTranslate(new mxPoint(0, 0));
+	    
+	    
+		switch(position) {
+			case SwingConstants.LEFT:
+				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_LEFT); //the horizontal label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "0"); // in pixels, added to the left side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "-10"); // in pixels, added to the right side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the vertical label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "0"); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "0"); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
+				break;
+			case SwingConstants.RIGHT:
+				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_RIGHT); //the horizontal label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "-10"); // in pixels, added to the left side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0"); // in pixels, added to the right side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the vertical label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "0"); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "0"); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
+				break;
+			case SwingConstants.TOP:
+				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the horizontal label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "0"); // in pixels, added to the left side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0"); // in pixels, added to the right side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP); //the vertical label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "0"); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "-10"); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
+				break;
+			case SwingConstants.BOTTOM:
+				visualGraph.setCellStyles(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_CENTER); //the horizontal label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_LEFT, "0"); // in pixels, added to the left side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_RIGHT, "0"); // in pixels, added to the right side of a label in a vertex
+				visualGraph.setCellStyles(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_BOTTOM); //the vertical label position of vertices
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_TOP, "-10"); // The value represents the spacing, in pixels, added to the top side of a label in a vertex (style applies to vertices only).
+				visualGraph.setCellStyles(mxConstants.STYLE_SPACING_BOTTOM, "0"); // The value represents the spacing, in pixels, added to the bottom side of a label in a vertex (style applies to vertices only).
+				break;
+		}
+		// 保证视图之外的Label能看见,平移图形
+		mxRectangle rec = visualGraph.getGraphBounds(); // 包含图形及其Label的边界
+		System.out.println("After:"+rec);
+		visualGraph.getView().setTranslate(new mxPoint(-rec.getX(), -rec.getY())); // 还原回来，设置为point(0,0)即可
+	}
+	
 	
 	/**
 	 * get width of vertex,{@link #vertexWidth}
