@@ -31,10 +31,5 @@
 	<classpathentry kind="lib" path="lib/relaxngDatatype/relaxngDatatype-20020414.jar"/>
 	<classpathentry kind="lib" path="lib/xsdlib/xsdlib-2.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SEWOL"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
